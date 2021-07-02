@@ -25,3 +25,11 @@
   pk: 1
   fields:
     name: Miyagino
+
+# SHUSSHIN
+- model: rikishi.shusshin
+  pk: 1
+  fields:
+    town: sapporo
+    prefecture: hokkaido
+    country: JP
