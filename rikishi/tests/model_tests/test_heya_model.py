@@ -8,3 +8,4 @@ class TestHeya:
     def test_heya_model_fields(self):
         heya = Heya.objects.get(id=1)
         assert heya.name == "Miyagino"
+        assert heya.is_active

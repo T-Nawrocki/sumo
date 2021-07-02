@@ -4,7 +4,6 @@
   fields:
     name_first: Hakuho
     name_second: Sho
-    is_active: True
     birth_name: Monkhbatyn Davaajargal
     date_of_birth: '1985-03-11'
     height: 192
