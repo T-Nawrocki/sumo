@@ -20,6 +20,7 @@ class Rikishi(models.Model):
     height = models.IntegerField()
     weight = models.IntegerField()
 
+    # RELATIONSHIPS
     heya = models.ForeignKey(
         'rikishi.heya',
         on_delete=models.CASCADE
