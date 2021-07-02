@@ -6,4 +6,4 @@ class RikishiConfig(AppConfig):
     name = 'rikishi'
 
     def ready(self):
-        from rikishi.models import rikishi, heya
+        from rikishi.models import rikishi, heya, shusshin
