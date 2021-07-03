@@ -2,8 +2,8 @@
 - model: rikishi.rikishi
   pk: 1
   fields:
-    name_first: Hakuho
-    name_second: Sho
+    name_first: hakuho
+    name_second: sho
     birth_name: Monkhbatyn Davaajargal
     date_of_birth: '1985-03-11'
     height: 192
