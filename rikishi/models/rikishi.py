@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.db import models
 
 from common.mixins.validate_model_mixin import ValidateModelMixin
@@ -42,3 +44,12 @@ class Rikishi(ValidateModelMixin, models.Model):
         'rikishi.shusshin',
         on_delete=models.CASCADE
     )
+
+    # PROPERTIES
+    @property
+    def age(self):
+        today = date.today()
+        # int(True) == 1, so if True, this will reduce age by 1
+        not_yet_had_birthday_this_year = ((today.month, today.day) < (self.date_of_birth.month, self.date_of_birth.day))
+        return today.year - self.date_of_birth.year - not_yet_had_birthday_this_year
+
