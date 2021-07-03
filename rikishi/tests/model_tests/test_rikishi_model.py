@@ -89,6 +89,20 @@ class TestRikishi:
         )
         rikishi.save()
 
+    def test_can_create_inactive_rikishi_with_non_unique_name(self):
+        rikishi = Rikishi(
+            name_first="Hakuho",
+            name_second="Akira",
+            is_active=False,
+            birth_name="Yūya Nakamura",
+            date_of_birth=datetime.date(1994, 10, 18),
+            height=168,
+            weight=98,
+            heya_id=1,
+            shusshin_id=1
+        )
+        rikishi.save()
+
     def test_cannot_create_rikishi_under_fifteen(self):
         today = datetime.date.today()
         five_years_ago = today - datetime.timedelta(days=5 * 365.25)
