@@ -3,6 +3,14 @@ from django.db import models
 from common.mixins.validate_model_mixin import ValidateModelMixin
 
 
+class RikishiManager(models.Manager):
+    def active(self):
+        return self.filter(is_active=True)
+
+    def inactive(self):
+        return self.filter(is_active=False)
+
+
 class Rikishi(ValidateModelMixin, models.Model):
     """
         A rikishi (sumo wrestler).
@@ -11,6 +19,9 @@ class Rikishi(ValidateModelMixin, models.Model):
         Rikishi belong to a Heya and come from a Shusshin, which both act primarily
         as collections of Rikishi.
     """
+
+    # MANAGER
+    objects = RikishiManager()
 
     # MODEL FIELDS
     name_first = models.CharField(max_length=255)
