@@ -22,6 +22,8 @@ class TestRikishiManager:
 
 @pytest.mark.django_db
 class TestRikishi:
+
+    # MODEL FIELDS
     def test_basic_rikishi_model_fields(self):
         rikishi = Rikishi.objects.get(id=1)
         assert rikishi.name_first == "Hakuho"
@@ -32,6 +34,7 @@ class TestRikishi:
         assert rikishi.height == 192
         assert rikishi.weight == 158
 
+    # RELATIONSHIPS
     def test_rikishi_has_heya(self):
         rikishi = Rikishi.objects.get(id=1)
         heya = Heya.objects.get(id=1)
@@ -41,3 +44,11 @@ class TestRikishi:
         rikishi = Rikishi.objects.get(id=1)
         shusshin = Shusshin.objects.get(id=1)
         assert rikishi.shusshin == shusshin
+
+    # PROPERTIES
+    def test_can_get_age(self):
+        rikishi = Rikishi.objects.get(id=1)
+        today = datetime.date.today()
+        upcoming_birthday = ((today.month, today.day) < (rikishi.date_of_birth.month, rikishi.date_of_birth.day))
+        expected_age = today.year - rikishi.date_of_birth.year - upcoming_birthday
+        assert rikishi.age == expected_age
