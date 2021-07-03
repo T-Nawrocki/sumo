@@ -1,5 +1,6 @@
 from datetime import date
 
+from django.core.exceptions import ValidationError
 from django.db import models
 
 from common.mixins.validate_model_mixin import ValidateModelMixin
@@ -44,6 +45,26 @@ class Rikishi(ValidateModelMixin, models.Model):
         'rikishi.shusshin',
         on_delete=models.CASCADE
     )
+
+    # CLEANING
+    def _validate_first_name_is_unique(self):
+        matching_rikishi_exists = Rikishi.objects.exclude(id=self.id).filter(
+            is_active=True,
+            name_first=self.name_first,
+        ).exists()
+        if matching_rikishi_exists:
+            raise ValidationError('An active Rikishi already exists with that first name.')
+
+    def _validate_age(self):
+        if self.age < 15:
+            raise ValidationError('Rikishi cannot be under 15.')
+
+    def clean(self):
+        self.name_first = self.name_first.lower()
+        self.name_second = self.name_second.lower()
+
+        self._validate_first_name_is_unique()
+        self._validate_age()
 
     # PROPERTIES
     @property
