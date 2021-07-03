@@ -63,7 +63,9 @@ class Rikishi(ValidateModelMixin, models.Model):
         self.name_first = self.name_first.lower()
         self.name_second = self.name_second.lower()
 
-        self._validate_first_name_is_unique()
+        if self.is_active:
+            self._validate_first_name_is_unique()
+
         self._validate_age()
 
     # PROPERTIES

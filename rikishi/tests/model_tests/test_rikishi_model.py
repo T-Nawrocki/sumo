@@ -76,6 +76,19 @@ class TestRikishi:
             rikishi.save()
         assert 'An active Rikishi already exists with that first name.' in str(excinfo.value)
 
+    def test_can_create_rikishi_with_same_name_as_inactive_rikishi(self):
+        rikishi = Rikishi(
+            name_first="Harumafuji",
+            name_second="Akira",
+            birth_name="Yūya Nakamura",
+            date_of_birth=datetime.date(1994, 10, 18),
+            height=168,
+            weight=98,
+            heya_id=1,
+            shusshin_id=1
+        )
+        rikishi.save()
+
     def test_cannot_create_rikishi_under_fifteen(self):
         today = datetime.date.today()
         five_years_ago = today - datetime.timedelta(days=5 * 365.25)
