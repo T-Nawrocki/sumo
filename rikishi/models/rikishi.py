@@ -30,8 +30,8 @@ class Rikishi(ValidateModelMixin, models.Model):
 
     birth_name = models.CharField(max_length=255)
     date_of_birth = models.DateField()
-    height = models.IntegerField()
-    weight = models.IntegerField()
+    height = models.PositiveSmallIntegerField()
+    weight = models.PositiveSmallIntegerField()
 
     # RELATIONSHIPS
     heya = models.ForeignKey(
