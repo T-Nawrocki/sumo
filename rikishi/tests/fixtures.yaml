@@ -27,7 +27,12 @@
 - model: rikishi.heya
   pk: 1
   fields:
-    name: Miyagino
+    name: miyagino
+- model: rikishi.heya
+  pk: 2
+  fields:
+    name: araiso
+    is_active: false
 
 # SHUSSHIN
 - model: rikishi.shusshin
