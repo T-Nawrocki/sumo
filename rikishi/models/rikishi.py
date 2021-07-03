@@ -76,3 +76,7 @@ class Rikishi(ValidateModelMixin, models.Model):
         not_yet_had_birthday_this_year = ((today.month, today.day) < (self.date_of_birth.month, self.date_of_birth.day))
         return today.year - self.date_of_birth.year - not_yet_had_birthday_this_year
 
+    @property
+    def full_name(self):
+        return f"{self.name_first} {self.name_second}"
+

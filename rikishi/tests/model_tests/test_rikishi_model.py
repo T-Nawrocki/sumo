@@ -133,3 +133,7 @@ class TestRikishi:
         upcoming_birthday = ((today.month, today.day) < (rikishi.date_of_birth.month, rikishi.date_of_birth.day))
         expected_age = today.year - rikishi.date_of_birth.year - upcoming_birthday
         assert rikishi.age == expected_age
+
+    def test_can_get_full_name(self):
+        rikishi = Rikishi.objects.get(id=1)
+        assert rikishi.full_name == "hakuho sho"
