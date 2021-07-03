@@ -8,6 +8,19 @@ from rikishi.models.shusshin import Shusshin
 
 
 @pytest.mark.django_db
+class TestRikishiManager:
+    def test_can_get_active_rikishi(self):
+        rikishi = Rikishi.objects.get(id=1)
+        active = Rikishi.objects.active()
+        assert active.first() == rikishi
+
+    def test_can_get_inactive_rikishi(self):
+        rikishi = Rikishi.objects.get(id=2)
+        inactive = Rikishi.objects.inactive()
+        assert inactive.first() == rikishi
+
+
+@pytest.mark.django_db
 class TestRikishi:
     def test_basic_rikishi_model_fields(self):
         rikishi = Rikishi.objects.get(id=1)

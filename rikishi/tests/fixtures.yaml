@@ -10,6 +10,18 @@
     weight: 158
     heya: 1
     shusshin: 1
+- model: rikishi.rikishi
+  pk: 2
+  fields:
+    name_first: harumafuji
+    name_second: kohei
+    is_active: false
+    birth_name: Davaanyamyn Byambadorj
+    date_of_birth: '1984-04-14'
+    height: 186
+    weight: 137
+    heya: 1
+    shusshin: 1
 
 # HEYA
 - model: rikishi.heya
