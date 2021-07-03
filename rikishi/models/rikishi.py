@@ -1,7 +1,9 @@
 from django.db import models
 
+from common.mixins.validate_model_mixin import ValidateModelMixin
 
-class Rikishi(models.Model):
+
+class Rikishi(ValidateModelMixin, models.Model):
     """
         A rikishi (sumo wrestler).
 
