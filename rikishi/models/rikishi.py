@@ -43,6 +43,11 @@ class Rikishi(ValidateModelMixin, models.Model):
         default=list,
         blank=True
     )
+    heya_id_history = ArrayField(
+        models.IntegerField(),
+        default=list,
+        blank=True
+    )
 
     # RELATIONSHIPS
     heya = models.ForeignKey(
@@ -75,15 +80,23 @@ class Rikishi(ValidateModelMixin, models.Model):
             self._validate_first_name_is_unique()
         self._validate_age()
 
-    def _update_name_history(self):
-        old_data = Rikishi.objects.filter(id=self.id)
+    def _update_name_history(self, old_data):
         has_new_name = not old_data.exists() or self.full_name != old_data.first().full_name
         if has_new_name and (not len(self.name_history) or self.name_history[-1] != self.full_name):
             self.name_history.append(self.full_name)
 
+    def _update_heya_id_history(self, old_data):
+        has_new_heya = not old_data.exists() or self.heya_id != old_data.first().heya_id
+        if has_new_heya and (not len(self.heya_id_history) or self.heya_id_history[-1] != self.heya_id):
+            self.heya_id_history.append(self.heya_id)
+
     def save(self, *args, **kwargs):
         self.full_clean()
-        self._update_name_history()
+
+        old_data = Rikishi.objects.filter(id=self.id)
+        self._update_name_history(old_data)
+        self._update_heya_id_history(old_data)
+
         super(Rikishi, self).save(*args, **kwargs)
 
     # PROPERTIES
@@ -97,4 +110,3 @@ class Rikishi(ValidateModelMixin, models.Model):
     @property
     def full_name(self):
         return f"{self.name_first} {self.name_second}"
-

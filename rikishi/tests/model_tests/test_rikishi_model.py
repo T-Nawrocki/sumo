@@ -67,6 +67,37 @@ class TestRikishi:
         rikishi.save()
         assert rikishi.name_history == ['hakuho sho']
 
+    def test_has_heya_id_history(self):
+        rikishi = Rikishi.objects.get(id=2)
+        assert rikishi.heya_id_history == [1, 2]
+
+    def test_default_heya_id_history_on_rikishi_creation(self):
+        rikishi = Rikishi.objects.create(
+            name_first="Enho",
+            name_second="Akira",
+            birth_name="Yūya Nakamura",
+            date_of_birth=datetime.date(1994, 10, 18),
+            height=168,
+            weight=98,
+            heya_id=1,
+            shusshin_id=1
+        )
+        assert rikishi.heya_id_history == [1]
+
+    def test_heya_id_history_updates_when_heya_is_changed(self):
+        rikishi = Rikishi.objects.get(id=1)
+        assert rikishi.heya_id_history == [1]
+        rikishi.heya_id = 2
+        rikishi.save()
+        assert rikishi.heya_id_history == [1, 2]
+
+    def test_heya_id_history_does_not_update_if_heya_has_not_changed(self):
+        rikishi = Rikishi.objects.get(id=1)
+        assert rikishi.heya_id_history == [1]
+        rikishi.is_active = False
+        rikishi.save()
+        assert rikishi.heya_id_history == [1]
+
     # RELATIONSHIPS
     def test_rikishi_has_heya(self):
         rikishi = Rikishi.objects.get(id=1)
