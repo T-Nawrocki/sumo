@@ -24,7 +24,7 @@ class TestRikishiManager:
 @pytest.mark.django_db
 class TestRikishi:
 
-    # MODEL FIELDS
+    # BASIC MODEL FIELDS
     def test_basic_rikishi_model_fields(self):
         rikishi = Rikishi.objects.get(id=1)
         assert rikishi.name_first == "hakuho"
@@ -34,6 +34,38 @@ class TestRikishi:
         assert rikishi.date_of_birth == datetime.date(1985, 3, 11)
         assert rikishi.height == 192
         assert rikishi.weight == 158
+
+    # HISTORY FIELDS
+    def test_has_name_history(self):
+        rikishi = Rikishi.objects.get(id=2)
+        assert rikishi.name_history == ['ama kohei', 'harumafuji kohei']
+
+    def test_default_name_history_on_creation(self):
+        rikishi = Rikishi.objects.create(
+            name_first="Enho",
+            name_second="Akira",
+            birth_name="Yūya Nakamura",
+            date_of_birth=datetime.date(1994, 10, 18),
+            height=168,
+            weight=98,
+            heya_id=1,
+            shusshin_id=1
+        )
+        assert rikishi.name_history == ["enho akira"]
+
+    def test_name_history_updates_when_name_is_changed(self):
+        rikishi = Rikishi.objects.get(id=1)
+        assert rikishi.name_history == ['hakuho sho']
+        rikishi.name_first = "hokuha"
+        rikishi.save()
+        assert rikishi.name_history == ['hakuho sho', 'hokuha sho']
+
+    def test_name_history_does_not_update_if_name_has_not_changed(self):
+        rikishi = Rikishi.objects.get(id=1)
+        assert rikishi.name_history == ['hakuho sho']
+        rikishi.is_active = False
+        rikishi.save()
+        assert rikishi.name_history == ['hakuho sho']
 
     # RELATIONSHIPS
     def test_rikishi_has_heya(self):

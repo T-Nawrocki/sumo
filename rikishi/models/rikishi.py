@@ -1,5 +1,6 @@
 from datetime import date
 
+from django.contrib.postgres.fields import ArrayField
 from django.core.exceptions import ValidationError
 from django.db import models
 
@@ -26,7 +27,7 @@ class Rikishi(ValidateModelMixin, models.Model):
     # MANAGER
     objects = RikishiManager()
 
-    # MODEL FIELDS
+    # BASIC MODEL FIELDS
     name_first = models.CharField(max_length=255)
     name_second = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
@@ -35,6 +36,13 @@ class Rikishi(ValidateModelMixin, models.Model):
     date_of_birth = models.DateField()
     height = models.PositiveSmallIntegerField()
     weight = models.PositiveSmallIntegerField()
+
+    # HISTORY FIELDS
+    name_history = ArrayField(
+        models.CharField(max_length=255),
+        default=list,
+        blank=True
+    )
 
     # RELATIONSHIPS
     heya = models.ForeignKey(
@@ -46,7 +54,7 @@ class Rikishi(ValidateModelMixin, models.Model):
         on_delete=models.CASCADE
     )
 
-    # CLEANING
+    # CLEANING, VALIDATION AND SAVING
     def _validate_first_name_is_unique(self):
         matching_rikishi_exists = Rikishi.objects.exclude(id=self.id).filter(
             is_active=True,
@@ -65,8 +73,18 @@ class Rikishi(ValidateModelMixin, models.Model):
 
         if self.is_active:
             self._validate_first_name_is_unique()
-
         self._validate_age()
+
+    def _update_name_history(self):
+        old_data = Rikishi.objects.filter(id=self.id)
+        has_new_name = not old_data.exists() or self.full_name != old_data.first().full_name
+        if has_new_name and (not len(self.name_history) or self.name_history[-1] != self.full_name):
+            self.name_history.append(self.full_name)
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        self._update_name_history()
+        super(Rikishi, self).save(*args, **kwargs)
 
     # PROPERTIES
     @property
