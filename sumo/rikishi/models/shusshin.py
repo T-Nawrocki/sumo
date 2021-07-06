@@ -23,7 +23,8 @@ class Shusshin (ValidateModelMixin, models.Model):
     prefecture = models.CharField(
         max_length=255,
         choices=prefectures.PREFECTURES,
-        blank=True
+        blank=True,
+        help_text="If the Shusshin is not in Japan, prefecture must be blank."
     )
     country = models.CharField(
         max_length=255,
