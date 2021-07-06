@@ -26,13 +26,19 @@ class Rikishi(ValidateModelMixin, models.Model):
 
     #META
     def __str__(self):
-        return self.full_name.title()
+        return self.shikona_display
 
     objects = RikishiManager()
 
     # BASIC MODEL FIELDS
-    name_first = models.CharField(max_length=255)
-    name_second = models.CharField(max_length=255)
+    shikona_first = models.CharField(
+        max_length=255,
+        help_text="The rikishi's ring name."
+    )
+    shikona_second = models.CharField(
+        max_length=255,
+        help_text="The rikishi's ring name second name."
+    )
     is_active = models.BooleanField(default=True)
 
     birth_name = models.CharField(max_length=255)
@@ -41,7 +47,7 @@ class Rikishi(ValidateModelMixin, models.Model):
     weight = models.PositiveSmallIntegerField()
 
     # HISTORY FIELDS
-    name_history = ArrayField(
+    shikona_history = ArrayField(
         models.CharField(max_length=255),
         default=list,
         blank=True
@@ -66,7 +72,7 @@ class Rikishi(ValidateModelMixin, models.Model):
     def _validate_first_name_is_unique(self):
         matching_rikishi_exists = Rikishi.objects.exclude(id=self.id).filter(
             is_active=True,
-            name_first=self.name_first,
+            shikona_first=self.shikona_first,
         ).exists()
         if matching_rikishi_exists:
             raise ValidationError('An active Rikishi already exists with that first name.')
@@ -76,17 +82,17 @@ class Rikishi(ValidateModelMixin, models.Model):
             raise ValidationError('Rikishi cannot be under 15.')
 
     def clean(self):
-        self.name_first = self.name_first.lower()
-        self.name_second = self.name_second.lower()
+        self.shikona_first = self.shikona_first.lower()
+        self.shikona_second = self.shikona_second.lower()
 
         if self.is_active:
             self._validate_first_name_is_unique()
         self._validate_age()
 
-    def _update_name_history(self, old_data):
-        has_new_name = not old_data.exists() or self.full_name != old_data.first().full_name
-        if has_new_name and (not len(self.name_history) or self.name_history[-1] != self.full_name):
-            self.name_history.append(self.full_name)
+    def _update_shikona_history(self, old_data):
+        has_new_name = not old_data.exists() or self.shikona_full != old_data.first().shikona_full
+        if has_new_name and (not len(self.shikona_history) or self.shikona_history[-1] != self.shikona_full):
+            self.shikona_history.append(self.shikona_full)
 
     def _update_heya_id_history(self, old_data):
         has_new_heya = not old_data.exists() or self.heya_id != old_data.first().heya_id
@@ -97,7 +103,7 @@ class Rikishi(ValidateModelMixin, models.Model):
         self.full_clean()
 
         old_data = Rikishi.objects.filter(id=self.id)
-        self._update_name_history(old_data)
+        self._update_shikona_history(old_data)
         self._update_heya_id_history(old_data)
 
         super(Rikishi, self).save(*args, **kwargs)
@@ -111,5 +117,9 @@ class Rikishi(ValidateModelMixin, models.Model):
         return today.year - self.date_of_birth.year - not_yet_had_birthday_this_year
 
     @property
-    def full_name(self):
-        return f"{self.name_first} {self.name_second}"
+    def shikona_full(self):
+        return f"{self.shikona_first} {self.shikona_second}"
+
+    @property
+    def shikona_display(self):
+        return self.shikona_full.title()

@@ -2,13 +2,13 @@
 - model: rikishi.rikishi
   pk: 1
   fields:
-    name_first: hakuho
-    name_second: sho
+    shikona_first: hakuho
+    shikona_second: sho
     birth_name: Monkhbatyn Davaajargal
     date_of_birth: '1985-03-11'
     height: 192
     weight: 158
-    name_history:
+    shikona_history:
       - hakuho sho
     heya_id_history:
       - 1
@@ -17,14 +17,14 @@
 - model: rikishi.rikishi
   pk: 2
   fields:
-    name_first: harumafuji
-    name_second: kohei
+    shikona_first: harumafuji
+    shikona_second: kohei
     is_active: false
     birth_name: Davaanyamyn Byambadorj
     date_of_birth: '1984-04-14'
     height: 186
     weight: 137
-    name_history:
+    shikona_history:
       - ama kohei
       - harumafuji kohei
     heya_id_history:

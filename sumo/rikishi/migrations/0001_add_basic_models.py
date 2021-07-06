@@ -23,8 +23,8 @@ class Migration(migrations.Migration):
             name='Rikishi',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name_first', models.CharField(max_length=255)),
-                ('name_second', models.CharField(max_length=255)),
+                ('shikona_first', models.CharField(max_length=255)),
+                ('shikona_second', models.CharField(max_length=255)),
                 ('is_active', models.BooleanField(default=True)),
                 ('birth_name', models.CharField(max_length=255)),
                 ('date_of_birth', models.DateField()),

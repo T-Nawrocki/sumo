@@ -32,8 +32,8 @@ class TestRikishi:
     # BASIC MODEL FIELDS
     def test_basic_rikishi_model_fields(self):
         rikishi = Rikishi.objects.get(id=1)
-        assert rikishi.name_first == "hakuho"
-        assert rikishi.name_second == "sho"
+        assert rikishi.shikona_first == "hakuho"
+        assert rikishi.shikona_second == "sho"
         assert rikishi.is_active
         assert rikishi.birth_name == "Monkhbatyn Davaajargal"
         assert rikishi.date_of_birth == datetime.date(1985, 3, 11)
@@ -41,14 +41,14 @@ class TestRikishi:
         assert rikishi.weight == 158
 
     # HISTORY FIELDS
-    def test_has_name_history(self):
+    def test_has_shikona_history(self):
         rikishi = Rikishi.objects.get(id=2)
-        assert rikishi.name_history == ['ama kohei', 'harumafuji kohei']
+        assert rikishi.shikona_history == ['ama kohei', 'harumafuji kohei']
 
-    def test_default_name_history_on_creation(self):
+    def test_default_shikona_history_on_creation(self):
         rikishi = Rikishi.objects.create(
-            name_first="Enho",
-            name_second="Akira",
+            shikona_first="Enho",
+            shikona_second="Akira",
             birth_name="Yūya Nakamura",
             date_of_birth=datetime.date(1994, 10, 18),
             height=168,
@@ -56,21 +56,21 @@ class TestRikishi:
             heya_id=1,
             shusshin_id=1
         )
-        assert rikishi.name_history == ["enho akira"]
+        assert rikishi.shikona_history == ["enho akira"]
 
-    def test_name_history_updates_when_name_is_changed(self):
+    def test_shikona_history_updates_when_name_is_changed(self):
         rikishi = Rikishi.objects.get(id=1)
-        assert rikishi.name_history == ['hakuho sho']
-        rikishi.name_first = "hokuha"
+        assert rikishi.shikona_history == ['hakuho sho']
+        rikishi.shikona_first = "hokuha"
         rikishi.save()
-        assert rikishi.name_history == ['hakuho sho', 'hokuha sho']
+        assert rikishi.shikona_history == ['hakuho sho', 'hokuha sho']
 
-    def test_name_history_does_not_update_if_name_has_not_changed(self):
+    def test_shikona_history_does_not_update_if_name_has_not_changed(self):
         rikishi = Rikishi.objects.get(id=1)
-        assert rikishi.name_history == ['hakuho sho']
+        assert rikishi.shikona_history == ['hakuho sho']
         rikishi.is_active = False
         rikishi.save()
-        assert rikishi.name_history == ['hakuho sho']
+        assert rikishi.shikona_history == ['hakuho sho']
 
     def test_has_heya_id_history(self):
         rikishi = Rikishi.objects.get(id=2)
@@ -78,8 +78,8 @@ class TestRikishi:
 
     def test_default_heya_id_history_on_rikishi_creation(self):
         rikishi = Rikishi.objects.create(
-            name_first="Enho",
-            name_second="Akira",
+            shikona_first="Enho",
+            shikona_second="Akira",
             birth_name="Yūya Nakamura",
             date_of_birth=datetime.date(1994, 10, 18),
             height=168,
@@ -117,8 +117,8 @@ class TestRikishi:
     # CLEANING
     def test_rikishi_name_is_cleaned_to_lowercase(self):
         rikishi = Rikishi.objects.create(
-            name_first="Enho",
-            name_second="Akira",
+            shikona_first="Enho",
+            shikona_second="Akira",
             birth_name="Yūya Nakamura",
             date_of_birth=datetime.date(1994, 10, 18),
             height=168,
@@ -126,13 +126,13 @@ class TestRikishi:
             heya_id=1,
             shusshin_id=1
         )
-        assert rikishi.name_first == "enho"
-        assert rikishi.name_second == "akira"
+        assert rikishi.shikona_first == "enho"
+        assert rikishi.shikona_second == "akira"
 
     def test_cannot_create_rikishi_with_same_name_as_another_active_rikishi(self):
         rikishi = Rikishi(
-            name_first="Hakuho",
-            name_second="Akira",
+            shikona_first="Hakuho",
+            shikona_second="Akira",
             birth_name="Yūya Nakamura",
             date_of_birth=datetime.date(1994, 10, 18),
             height=168,
@@ -146,8 +146,8 @@ class TestRikishi:
 
     def test_can_create_rikishi_with_same_name_as_inactive_rikishi(self):
         rikishi = Rikishi(
-            name_first="Harumafuji",
-            name_second="Akira",
+            shikona_first="Harumafuji",
+            shikona_second="Akira",
             birth_name="Yūya Nakamura",
             date_of_birth=datetime.date(1994, 10, 18),
             height=168,
@@ -159,8 +159,8 @@ class TestRikishi:
 
     def test_can_create_inactive_rikishi_with_non_unique_name(self):
         rikishi = Rikishi(
-            name_first="Hakuho",
-            name_second="Akira",
+            shikona_first="Hakuho",
+            shikona_second="Akira",
             is_active=False,
             birth_name="Yūya Nakamura",
             date_of_birth=datetime.date(1994, 10, 18),
@@ -175,8 +175,8 @@ class TestRikishi:
         today = datetime.date.today()
         five_years_ago = today - datetime.timedelta(days=5 * 365.25)
         rikishi = Rikishi(
-            name_first="Enho",
-            name_second="Akira",
+            shikona_first="Enho",
+            shikona_second="Akira",
             birth_name="Yūya Nakamura",
             date_of_birth=five_years_ago,
             height=168,
@@ -202,6 +202,10 @@ class TestRikishi:
         expected_age = today.year - rikishi.date_of_birth.year - upcoming_birthday
         assert rikishi.age == expected_age
 
-    def test_can_get_full_name(self):
+    def test_can_get_shikona_full(self):
         rikishi = Rikishi.objects.get(id=1)
-        assert rikishi.full_name == "hakuho sho"
+        assert rikishi.shikona_full == "hakuho sho"
+
+    def test_can_get_shikona_display(self):
+        rikishi = Rikishi.objects.get(id=1)
+        assert rikishi.shikona_display == "Hakuho Sho"
