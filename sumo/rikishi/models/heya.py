@@ -7,6 +7,7 @@ from sumo.common.mixins.validate_model_mixin import ValidateModelMixin
 class Heya (ValidateModelMixin, models.Model):
     """A heya (stable). Primarily acts as a collection of Rikishi."""
     
+    # META
     def __str__(self):
         return f"{self.full_name}"
 

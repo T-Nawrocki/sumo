@@ -10,11 +10,12 @@ from sumo.geography import countries
 class Shusshin (ValidateModelMixin, models.Model):
     """A shusshin (place of origin). Primarily acts as a collection of Rikishi."""
 
+    # META
     def __str__(self):
         if self.prefecture:
             return prefectures.full_display_name(self.prefecture)
         else:
-            return choices_as_dict(countries)[self.country]
+            return choices_as_dict(countries.COUNTRIES)[self.country]
 
 
     # MODEL FIELDS

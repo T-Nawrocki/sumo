@@ -8,6 +8,11 @@ from sumo.rikishi.models.rikishi import Rikishi
 @pytest.mark.django_db
 class TestHeya:
 
+    # META
+    def test_string_representation(self):
+        heya = Heya.objects.get(id=1)
+        assert str(heya) == "Miyagino-beya"
+
     # MODEL FIELDS
     def test_basic_heya_model_fields(self):
         heya = Heya.objects.get(id=1)

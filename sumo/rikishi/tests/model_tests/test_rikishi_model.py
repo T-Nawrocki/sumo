@@ -24,6 +24,11 @@ class TestRikishiManager:
 @pytest.mark.django_db
 class TestRikishi:
 
+    # META
+    def test_string_representation(self):
+        rikishi = Rikishi.objects.get(id=1)
+        assert str(rikishi) == 'Hakuho Sho'
+
     # BASIC MODEL FIELDS
     def test_basic_rikishi_model_fields(self):
         rikishi = Rikishi.objects.get(id=1)

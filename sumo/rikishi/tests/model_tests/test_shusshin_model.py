@@ -8,6 +8,16 @@ from sumo.rikishi.models.shusshin import Shusshin
 @pytest.mark.django_db
 class TestShusshin:
 
+    # META
+    def test_string_representation(self):
+        shusshin = Shusshin.objects.get(id=1)
+        assert str(shusshin) == "Hokkaidō"
+        shusshin.prefecture = "shimane"
+        assert str(shusshin) == "Shimane-ken"
+        shusshin.prefecture = None
+        shusshin.country = "MN"
+        assert str(shusshin) == "Mongolia"
+
     # MODEL FIELDS
     def test_basic_shusshin_model_fields(self):
         shusshin = Shusshin.objects.get(id=1)

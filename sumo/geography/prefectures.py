@@ -51,17 +51,17 @@ PREFECTURES = (
 )
 
 SUFFIXES = {
-    'tokyo': 'to',
-    'hokkaido': 'dō',
-    'osaka': 'fu',
-    'kyoto': 'fu'
+    'tokyo': '-to',
+    'hokkaido': '',
+    'osaka': '-fu',
+    'kyoto': '-fu'
 }
 
 def display_name(prefecture):
     return choices_as_dict(PREFECTURES)[prefecture]
 
 def suffix(prefecture):
-    return SUFFIXES[prefecture] if prefecture in SUFFIXES else 'ken'
+    return SUFFIXES[prefecture] if prefecture in SUFFIXES else '-ken'
         
 def full_display_name(prefecture):
-    return f"{display_name(prefecture)}-{suffix(prefecture)}"
+    return f"{display_name(prefecture)}{suffix(prefecture)}"
