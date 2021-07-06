@@ -1,7 +1,5 @@
 from sumo.geography import prefectures
 
-import pytest
-
 
 class TestPrefectures:
     def test_can_get_display_name(self):

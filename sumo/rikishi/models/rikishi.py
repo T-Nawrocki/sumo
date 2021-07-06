@@ -24,7 +24,7 @@ class Rikishi(ValidateModelMixin, models.Model):
         as collections of Rikishi.
     """
 
-    #META
+    # META
     def __str__(self):
         return self.shikona_display
 
