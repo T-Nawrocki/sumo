@@ -6,6 +6,9 @@ from sumo.common.mixins.validate_model_mixin import ValidateModelMixin
 
 class Heya (ValidateModelMixin, models.Model):
     """A heya (stable). Primarily acts as a collection of Rikishi."""
+    
+    def __str__(self):
+        return f"{self.full_name}"
 
     # MODEL FIELDS
     name = models.CharField(max_length=255)
