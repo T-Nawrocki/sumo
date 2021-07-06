@@ -24,6 +24,10 @@ class Rikishi(ValidateModelMixin, models.Model):
         as collections of Rikishi.
     """
 
+    def __str__(self):
+        return self.full_name
+    
+
     # MANAGER
     objects = RikishiManager()
 
