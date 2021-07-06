@@ -38,3 +38,8 @@ class TestHeya:
     def test_can_create_inactive_heya_with_same_name_as_active_heya(self):
         heya = Heya(name='miyagino', is_active=False)
         heya.save()
+
+    # PROPERTY
+    def test_can_get_full_name(self):
+        heya = Heya.objects.get(id=1)
+        assert heya.full_name == "Miyagino-beya"

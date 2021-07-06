@@ -24,3 +24,8 @@ class Heya (ValidateModelMixin, models.Model):
         self.name = self.name.lower()
         if self.is_active:
             self._validate_name_is_unique()
+
+    # PROPERTIES
+    @property
+    def full_name(self):
+        return f"{self.name.capitalize()}-beya"
