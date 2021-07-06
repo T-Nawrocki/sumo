@@ -1,9 +1,9 @@
 from django.core.exceptions import ValidationError
 from django.db import models
 
-from common.mixins.validate_model_mixin import ValidateModelMixin
-from geography.countries import COUNTRIES
-from geography.prefectures import PREFECTURES
+from sumo.common.mixins.validate_model_mixin import ValidateModelMixin
+from sumo.geography.countries import COUNTRIES
+from sumo.geography.prefectures import PREFECTURES
 
 
 class Shusshin (ValidateModelMixin, models.Model):

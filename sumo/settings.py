@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
-    'rikishi.apps.RikishiConfig',
+    'sumo.rikishi.apps.RikishiConfig',
 ]
 
 MIDDLEWARE = [

@@ -1,7 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.db import models
 
-from common.mixins.validate_model_mixin import ValidateModelMixin
+from sumo.common.mixins.validate_model_mixin import ValidateModelMixin
 
 
 class Heya (ValidateModelMixin, models.Model):

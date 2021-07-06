@@ -5,4 +5,4 @@ from django.core.management import call_command
 @pytest.fixture(scope='session')
 def django_db_setup(django_db_setup, django_db_blocker):
     with django_db_blocker.unblock():
-        call_command('loaddata', 'rikishi/tests/fixtures.yaml')
+        call_command('loaddata', 'sumo/rikishi/tests/fixtures.yaml')

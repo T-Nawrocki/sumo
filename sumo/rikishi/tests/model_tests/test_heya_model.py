@@ -1,8 +1,8 @@
 import pytest
 from django.core.exceptions import ValidationError
 
-from rikishi.models.heya import Heya
-from rikishi.models.rikishi import Rikishi
+from sumo.rikishi.models.heya import Heya
+from sumo.rikishi.models.rikishi import Rikishi
 
 
 @pytest.mark.django_db

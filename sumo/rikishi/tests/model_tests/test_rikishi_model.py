@@ -3,9 +3,9 @@ import datetime
 import pytest
 from django.core.exceptions import ValidationError
 
-from rikishi.models.heya import Heya
-from rikishi.models.rikishi import Rikishi
-from rikishi.models.shusshin import Shusshin
+from sumo.rikishi.models.heya import Heya
+from sumo.rikishi.models.rikishi import Rikishi
+from sumo.rikishi.models.shusshin import Shusshin
 
 
 @pytest.mark.django_db
