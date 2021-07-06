@@ -1,3 +1,6 @@
+from sumo.common.utils import choices_as_dict
+
+
 PREFECTURES = (
     ('aichi', 'Aichi'),
     ('akita', 'Akita'),
@@ -46,3 +49,19 @@ PREFECTURES = (
     ('yamaguchi', 'Yamaguchi'),
     ('yamanashi', 'Yamanashi')
 )
+
+SUFFIXES = {
+    'tokyo': 'to',
+    'hokkaido': 'dō',
+    'osaka': 'fu',
+    'kyoto': 'fu'
+}
+
+def display_name(prefecture):
+    return choices_as_dict(PREFECTURES)[prefecture]
+
+def suffix(prefecture):
+    return SUFFIXES[prefecture] if prefecture in SUFFIXES else 'ken'
+        
+def full_display_name(prefecture):
+    return f"{display_name(prefecture)}-{suffix(prefecture)}"
