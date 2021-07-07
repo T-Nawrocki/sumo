@@ -1,3 +1,4 @@
+# yapf: disable
 COUNTRIES = (
     ('AF', 'Afghanistan'),
     ('AX', 'Åland Islands'),
@@ -249,3 +250,4 @@ COUNTRIES = (
     ('ZM', 'Zambia'),
     ('ZW', 'Zimbabwe')
 )
+# yapf: enable

@@ -8,6 +8,7 @@ from sumo.common.mixins.validate_model_mixin import ValidateModelMixin
 
 
 class RikishiManager(models.Manager):
+
     def active(self):
         return self.filter(is_active=True)
 
@@ -31,14 +32,8 @@ class Rikishi(ValidateModelMixin, models.Model):
     objects = RikishiManager()
 
     # BASIC MODEL FIELDS
-    shikona_first = models.CharField(
-        max_length=255,
-        help_text="The rikishi's ring name."
-    )
-    shikona_second = models.CharField(
-        max_length=255,
-        help_text="The rikishi's ring name second name."
-    )
+    shikona_first = models.CharField(max_length=255, help_text="The rikishi's ring name.")
+    shikona_second = models.CharField(max_length=255, help_text="The rikishi's ring name second name.")
     is_active = models.BooleanField(default=True)
 
     birth_name = models.CharField(max_length=255)
@@ -47,26 +42,12 @@ class Rikishi(ValidateModelMixin, models.Model):
     weight = models.PositiveSmallIntegerField()
 
     # HISTORY FIELDS
-    shikona_history = ArrayField(
-        models.CharField(max_length=255),
-        default=list,
-        blank=True
-    )
-    heya_id_history = ArrayField(
-        models.IntegerField(),
-        default=list,
-        blank=True
-    )
+    shikona_history = ArrayField(models.CharField(max_length=255), default=list, blank=True)
+    heya_id_history = ArrayField(models.IntegerField(), default=list, blank=True)
 
     # RELATIONSHIPS
-    heya = models.ForeignKey(
-        'rikishi.heya',
-        on_delete=models.CASCADE
-    )
-    shusshin = models.ForeignKey(
-        'rikishi.shusshin',
-        on_delete=models.CASCADE
-    )
+    heya = models.ForeignKey('rikishi.heya', on_delete=models.CASCADE)
+    shusshin = models.ForeignKey('rikishi.shusshin', on_delete=models.CASCADE)
 
     # CLEANING, VALIDATION AND SAVING
     def _validate_first_name_is_unique(self):

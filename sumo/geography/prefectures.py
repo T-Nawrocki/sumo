@@ -1,6 +1,6 @@
 from sumo.common.utils import choices_as_dict
 
-
+# yapf: disable
 PREFECTURES = (
     ('aichi', 'Aichi'),
     ('akita', 'Akita'),
@@ -56,6 +56,7 @@ SUFFIXES = {
     'osaka': '-fu',
     'kyoto': '-fu'
 }
+# yapf: enable
 
 
 def display_name(prefecture):

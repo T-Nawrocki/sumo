@@ -10,6 +10,7 @@ from sumo.rikishi.models.shusshin import Shusshin
 
 @pytest.mark.django_db
 class TestRikishiManager:
+
     def test_can_get_active_rikishi(self):
         rikishi = Rikishi.objects.get(id=1)
         active = Rikishi.objects.active()

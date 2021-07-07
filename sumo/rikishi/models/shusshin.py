@@ -7,7 +7,7 @@ from sumo.geography import prefectures
 from sumo.geography import countries
 
 
-class Shusshin (ValidateModelMixin, models.Model):
+class Shusshin(ValidateModelMixin, models.Model):
     """A shusshin (place of origin). Primarily acts as a collection of Rikishi."""
 
     # META
@@ -25,11 +25,7 @@ class Shusshin (ValidateModelMixin, models.Model):
         blank=True,
         help_text="If the Shusshin is not in Japan, prefecture must be blank."
     )
-    country = models.CharField(
-        max_length=255,
-        choices=countries.COUNTRIES,
-        default='JP'
-    )
+    country = models.CharField(max_length=255, choices=countries.COUNTRIES, default='JP')
 
     # CLEANING
     def _validate_prefecture(self):

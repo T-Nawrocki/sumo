@@ -4,7 +4,7 @@ from django.db import models
 from sumo.common.mixins.validate_model_mixin import ValidateModelMixin
 
 
-class Heya (ValidateModelMixin, models.Model):
+class Heya(ValidateModelMixin, models.Model):
     """A heya (stable). Primarily acts as a collection of Rikishi."""
 
     # META

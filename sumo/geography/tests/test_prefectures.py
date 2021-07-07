@@ -2,6 +2,7 @@ from sumo.geography import prefectures
 
 
 class TestPrefectures:
+
     def test_can_get_display_name(self):
         assert prefectures.display_name('tokyo') == 'Tōkyō'
 
