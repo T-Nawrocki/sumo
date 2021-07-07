@@ -17,6 +17,9 @@ class Shusshin(ValidateModelMixin, models.Model):
         else:
             return choices_as_dict(countries.COUNTRIES)[self.country]
 
+    class Meta:
+        verbose_name_plural = "Shusshin"
+
     # MODEL FIELDS
     town = models.CharField(max_length=255)
     prefecture = models.CharField(

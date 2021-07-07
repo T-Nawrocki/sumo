@@ -11,6 +11,9 @@ class Heya(ValidateModelMixin, models.Model):
     def __str__(self):
         return f"{self.full_name}"
 
+    class Meta:
+        verbose_name_plural = "Heya"
+
     # MODEL FIELDS
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)

@@ -29,6 +29,9 @@ class Rikishi(ValidateModelMixin, models.Model):
     def __str__(self):
         return self.shikona_display
 
+    class Meta:
+        verbose_name_plural = "Rikishi"
+
     objects = RikishiManager()
 
     # BASIC MODEL FIELDS
