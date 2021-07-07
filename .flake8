@@ -1,2 +1,10 @@
 [flake8]
-max-line-length=120
+max-line-length = 120
+
+exclude =
+    **/migrations
+
+per-file-ignores = 
+    sumo/settings_test.py: F401, F403
+    sumo/settings.py: F401, F403
+    sumo/rikishi/apps.py: F401
