@@ -35,14 +35,16 @@ class Rikishi(ValidateModelMixin, models.Model):
     objects = RikishiManager()
 
     # BASIC MODEL FIELDS
-    shikona_first = models.CharField(max_length=255, help_text="The rikishi's ring name.")
-    shikona_second = models.CharField(max_length=255, help_text="The rikishi's ring name second name.")
+    shikona_first = models.CharField(
+        max_length=255, help_text="The rikishi's 'family' ring name", verbose_name="Shikona"
+    )
+    shikona_second = models.CharField(max_length=255, help_text="The rikishi's 'given' ring name", verbose_name="")
     is_active = models.BooleanField(default=True)
 
     birth_name = models.CharField(max_length=255)
     date_of_birth = models.DateField()
-    height = models.PositiveSmallIntegerField()
-    weight = models.PositiveSmallIntegerField()
+    height = models.PositiveSmallIntegerField(verbose_name="Height (cm)")
+    weight = models.PositiveSmallIntegerField(verbose_name="Weight (kg)")
 
     # HISTORY FIELDS
     shikona_history = ArrayField(models.CharField(max_length=255), default=list, blank=True)

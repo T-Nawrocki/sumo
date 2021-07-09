@@ -12,4 +12,3 @@ class RikishiAdmin(admin.ModelAdmin):
     }), ("Personal Details", {
         "fields": ("birth_name", "date_of_birth", "height", "weight"),
     }))
-    # readonly_fields = ("shikona_history", "heya_history")
