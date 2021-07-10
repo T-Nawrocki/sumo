@@ -10,5 +10,6 @@ class RikishiAdmin(admin.ModelAdmin):
     }), ("Career", {
         "fields": ("heya", "shusshin", "shikona_history", "heya_id_history"),
     }), ("Personal Details", {
-        "fields": ("birth_name", "date_of_birth", "height", "weight"),
+        "fields": ("height", "weight", "date_of_birth", "birth_name"),
     }))
+    readonly_fields = ("shikona_history", "heya_id_history")
