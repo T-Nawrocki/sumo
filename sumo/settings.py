@@ -38,8 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+
+    'sumo.banzuke.apps.BanzukeConfig',
+    'sumo.basho.apps.BashoConfig',
     'sumo.rikishi.apps.RikishiConfig',
-    'sumo.basho.apps.BashoConfig'
 ]
 # yapf: enable
 
