@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+# yapf: disable
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'sumo.rikishi.apps.RikishiConfig',
+    'sumo.basho.apps.BashoConfig'
 ]
+# yapf: enable
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
