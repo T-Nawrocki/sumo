@@ -50,3 +50,20 @@
   fields:
     town: sapporo
     prefecture: hokkaido
+
+# BASHO
+- model: basho.basho
+  pk: 1
+  fields: {}
+
+# BANZUKE
+- model: banzuke.banzuke
+  pk: 1
+  fields:
+    basho: 1
+    
+- model: banzuke.banzukeappearance
+  pk: 1
+  fields:
+    rikishi: 1
+    banzuke: 1
