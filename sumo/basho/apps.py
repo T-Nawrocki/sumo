@@ -7,3 +7,4 @@ class BashoConfig(AppConfig):
 
     def ready(self):
         from sumo.basho.models import basho
+        from sumo.basho.admin import basho_admin

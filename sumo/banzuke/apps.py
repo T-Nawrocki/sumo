@@ -7,3 +7,4 @@ class BanzukeConfig(AppConfig):
 
     def ready(self):
         from sumo.banzuke.models import banzuke, banzuke_appearance
+        from sumo.banzuke.admin import banzuke_admin, banzuke_appearance_admin
