@@ -8,5 +8,8 @@ class BanzukeAppearance(models.Model):
     Ranks are represented as integers for easy comparison.
     """
 
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=['banzuke', 'rikishi'], name='unique_banzuke_appearance')]
+
     banzuke = models.ForeignKey("banzuke.banzuke", on_delete=models.CASCADE)
     rikishi = models.ForeignKey("rikishi.rikishi", on_delete=models.CASCADE)

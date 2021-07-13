@@ -6,7 +6,7 @@ from sumo.rikishi.models.rikishi import Rikishi
 
 
 @pytest.mark.django_db
-class TestBanzukeModel:
+class TestBanzuke:
 
     # RELATIONSHIPS
     def test_has_basho(self):
