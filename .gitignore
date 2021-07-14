@@ -11,6 +11,13 @@ settings_local.py
 .idea
 .vscode
 
+# coverage.py files
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
 ### Python template
 # Byte-compiled / optimized / DLL files
 __pycache__/
