@@ -25,6 +25,27 @@ class TestBanzukeAppearance:
             banzuke_appearance.save()
         assert "'division': ['Ensure this value is less than or equal to 6.']" in str(excinfo.value)
 
+    def test_has_makuuchi_rank(self):
+        banzuke_appearance = BanzukeAppearance.objects.get(id=1)
+        assert banzuke_appearance.makuuchi_rank == 1
+
+    def test_makuuchi_rank_can_be_none(self):
+        banzuke_appearance = BanzukeAppearance(rikishi_id=2, banzuke_id=1, division=2)
+        banzuke_appearance.save()
+        assert banzuke_appearance.makuuchi_rank is None
+
+    def test_makuuchi_rank_max_and_min(self):
+        banzuke_appearance = BanzukeAppearance(rikishi_id=2, banzuke_id=1, division=2)
+        banzuke_appearance.makuuchi_rank = 0
+        with pytest.raises(ValidationError) as excinfo:
+            banzuke_appearance.save()
+        assert "'makuuchi_rank': ['Ensure this value is greater than or equal to 1.']" in str(excinfo.value)
+
+        banzuke_appearance.makuuchi_rank = 6
+        with pytest.raises(ValidationError) as excinfo:
+            banzuke_appearance.save()
+        assert "'makuuchi_rank': ['Ensure this value is less than or equal to 5.']" in str(excinfo.value)
+
     # RELATIONSHIPS
     def test_has_banzuke(self):
         banzuke_appearance = BanzukeAppearance.objects.get(id=1)

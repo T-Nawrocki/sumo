@@ -18,3 +18,4 @@ class BanzukeAppearance(ValidateModelMixin, models.Model):
     rikishi = models.ForeignKey("rikishi.rikishi", on_delete=models.CASCADE)
 
     division = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(6)])
+    makuuchi_rank = models.IntegerField(blank=True, null=True, validators=[MinValueValidator(1), MaxValueValidator(5)])
