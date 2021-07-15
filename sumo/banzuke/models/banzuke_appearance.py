@@ -19,3 +19,4 @@ class BanzukeAppearance(ValidateModelMixin, models.Model):
 
     division = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(6)])
     makuuchi_rank = models.IntegerField(blank=True, null=True, validators=[MinValueValidator(1), MaxValueValidator(5)])
+    numeric_rank = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(150)])

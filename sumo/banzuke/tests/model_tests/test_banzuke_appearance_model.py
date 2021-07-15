@@ -9,13 +9,16 @@ from sumo.rikishi.models.rikishi import Rikishi
 @pytest.mark.django_db
 class TestBanzukeAppearance:
 
+    @pytest.fixture(scope='function')
+    def banzuke_appearance(self):
+        return BanzukeAppearance.objects.get(id=1)
+
     # MODEL FIELDS
-    def test_has_division(self):
-        banzuke_appearance = BanzukeAppearance.objects.get(id=1)
+    def test_has_division(self, banzuke_appearance):
         assert banzuke_appearance.division == 1
 
-    def test_division_max_and_min(self):
-        banzuke_appearance = BanzukeAppearance(rikishi_id=2, banzuke_id=1, division=0)
+    def test_division_max_and_min(self, banzuke_appearance):
+        banzuke_appearance.division = 0
         with pytest.raises(ValidationError) as excinfo:
             banzuke_appearance.save()
         assert "'division': ['Ensure this value is greater than or equal to 1.']" in str(excinfo.value)
@@ -25,17 +28,14 @@ class TestBanzukeAppearance:
             banzuke_appearance.save()
         assert "'division': ['Ensure this value is less than or equal to 6.']" in str(excinfo.value)
 
-    def test_has_makuuchi_rank(self):
-        banzuke_appearance = BanzukeAppearance.objects.get(id=1)
+    def test_has_makuuchi_rank(self, banzuke_appearance):
         assert banzuke_appearance.makuuchi_rank == 1
 
-    def test_makuuchi_rank_can_be_none(self):
-        banzuke_appearance = BanzukeAppearance(rikishi_id=2, banzuke_id=1, division=2)
+    def test_makuuchi_rank_can_be_none(self, banzuke_appearance):
+        banzuke_appearance.makuuchi_rank = None
         banzuke_appearance.save()
-        assert banzuke_appearance.makuuchi_rank is None
 
-    def test_makuuchi_rank_max_and_min(self):
-        banzuke_appearance = BanzukeAppearance(rikishi_id=2, banzuke_id=1, division=2)
+    def test_makuuchi_rank_max_and_min(self, banzuke_appearance):
         banzuke_appearance.makuuchi_rank = 0
         with pytest.raises(ValidationError) as excinfo:
             banzuke_appearance.save()
@@ -46,14 +46,26 @@ class TestBanzukeAppearance:
             banzuke_appearance.save()
         assert "'makuuchi_rank': ['Ensure this value is less than or equal to 5.']" in str(excinfo.value)
 
+    def test_has_numeric_rank(self, banzuke_appearance):
+        assert banzuke_appearance.numeric_rank == 1
+
+    def test_numeric_rank_max_and_min(self, banzuke_appearance):
+        banzuke_appearance.numeric_rank = 0
+        with pytest.raises(ValidationError) as excinfo:
+            banzuke_appearance.save()
+        assert "numeric_rank': ['Ensure this value is greater than or equal to 1.']" in str(excinfo.value)
+
+        banzuke_appearance.numeric_rank = 151
+        with pytest.raises(ValidationError) as excinfo:
+            banzuke_appearance.save()
+        assert "numeric_rank': ['Ensure this value is less than or equal to 150.']" in str(excinfo.value)
+
     # RELATIONSHIPS
-    def test_has_banzuke(self):
-        banzuke_appearance = BanzukeAppearance.objects.get(id=1)
+    def test_has_banzuke(self, banzuke_appearance):
         banzuke = Banzuke.objects.get(id=1)
         assert banzuke_appearance.banzuke == banzuke
 
-    def test_has_rikishi(self):
-        banzuke_appearance = BanzukeAppearance.objects.get(id=1)
+    def test_has_rikishi(self, banzuke_appearance):
         rikishi = Rikishi.objects.get(id=1)
         assert banzuke_appearance.rikishi == rikishi
 
@@ -62,5 +74,5 @@ class TestBanzukeAppearance:
         banzuke = Banzuke.objects.get(id=1)
 
         with pytest.raises(ValidationError) as excinfo:
-            BanzukeAppearance.objects.create(rikishi=rikishi, banzuke=banzuke, division=1)
+            BanzukeAppearance.objects.create(rikishi=rikishi, banzuke=banzuke, division=1, numeric_rank=1)
         assert "'Banzuke appearance with this Banzuke and Rikishi already exists.'" in str(excinfo.value)
