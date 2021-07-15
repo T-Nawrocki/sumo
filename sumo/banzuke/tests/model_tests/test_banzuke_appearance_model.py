@@ -1,4 +1,4 @@
-from django.db.utils import IntegrityError
+from django.core.exceptions import ValidationError
 import pytest
 
 from sumo.banzuke.models.banzuke import Banzuke
@@ -8,6 +8,22 @@ from sumo.rikishi.models.rikishi import Rikishi
 
 @pytest.mark.django_db
 class TestBanzukeAppearance:
+
+    # MODEL FIELDS
+    def test_has_division(self):
+        banzuke_appearance = BanzukeAppearance.objects.get(id=1)
+        assert banzuke_appearance.division == 1
+
+    def test_division_max_and_min(self):
+        banzuke_appearance = BanzukeAppearance(rikishi_id=2, banzuke_id=1, division=0)
+        with pytest.raises(ValidationError) as excinfo:
+            banzuke_appearance.save()
+        assert "'division': ['Ensure this value is greater than or equal to 1.']" in str(excinfo.value)
+
+        banzuke_appearance.division = 7
+        with pytest.raises(ValidationError) as excinfo:
+            banzuke_appearance.save()
+        assert "'division': ['Ensure this value is less than or equal to 6.']" in str(excinfo.value)
 
     # RELATIONSHIPS
     def test_has_banzuke(self):
@@ -24,6 +40,6 @@ class TestBanzukeAppearance:
         rikishi = Rikishi.objects.get(id=1)
         banzuke = Banzuke.objects.get(id=1)
 
-        with pytest.raises(IntegrityError) as excinfo:
-            BanzukeAppearance.objects.create(rikishi=rikishi, banzuke=banzuke)
-        assert "Key (banzuke_id, rikishi_id)=(1, 1) already exists." in str(excinfo.value)
+        with pytest.raises(ValidationError) as excinfo:
+            BanzukeAppearance.objects.create(rikishi=rikishi, banzuke=banzuke, division=1)
+        assert "'Banzuke appearance with this Banzuke and Rikishi already exists.'" in str(excinfo.value)
