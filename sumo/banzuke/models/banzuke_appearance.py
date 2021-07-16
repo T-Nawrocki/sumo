@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
+from sumo.banzuke import rank
 from sumo.common.mixins.validate_model_mixin import ValidateModelMixin
 
 
@@ -20,3 +21,4 @@ class BanzukeAppearance(ValidateModelMixin, models.Model):
     division = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(6)])
     makuuchi_rank = models.IntegerField(blank=True, null=True, validators=[MinValueValidator(1), MaxValueValidator(5)])
     numeric_rank = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(150)])
+    side = models.IntegerField(choices=rank.choices_from(rank.SIDES))
