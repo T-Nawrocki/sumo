@@ -1,5 +1,6 @@
-from django.core.exceptions import ValidationError
 from django.db import models
+from django.db.models.query_utils import Q
+from django.db.models.constraints import UniqueConstraint
 
 from sumo.common.mixins.validate_model_mixin import ValidateModelMixin
 
@@ -13,24 +14,17 @@ class Heya(ValidateModelMixin, models.Model):
 
     class Meta:
         verbose_name_plural = "Heya"
+        constraints = [
+            UniqueConstraint(fields=['name'], condition=Q(is_active=True), name='unique_name_for_active_heya')
+        ]
 
     # MODEL FIELDS
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
 
     # CLEANING
-    def _validate_name_is_unique(self):
-        matching_heya_exists = Heya.objects.exclude(id=self.id).filter(
-            is_active=True,
-            name=self.name,
-        ).exists()
-        if matching_heya_exists:
-            raise ValidationError('An active Heya already exists with that name.')
-
     def clean(self):
         self.name = self.name.lower()
-        if self.is_active:
-            self._validate_name_is_unique()
 
     # PROPERTIES
     @property
