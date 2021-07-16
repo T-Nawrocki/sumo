@@ -116,7 +116,7 @@ class TestRikishi:
         shusshin = Shusshin.objects.get(id=1)
         assert rikishi.shusshin == shusshin
 
-    # CLEANING
+    # CLEANING AND VALIDATION
     def test_rikishi_name_is_cleaned_to_lowercase(self):
         rikishi = Rikishi.objects.create(
             shikona_first="Enho",
@@ -174,6 +174,30 @@ class TestRikishi:
             shusshin_id=1
         )
         rikishi.save()
+
+    def test_height_max_and_min(self):
+        rikishi = Rikishi.objects.get(id=1)
+        rikishi.height = 149
+        with pytest.raises(ValidationError) as excinfo:
+            rikishi.save()
+        assert "'height': ['Ensure this value is greater than or equal to 150.']" in str(excinfo.value)
+
+        rikishi.height = 251
+        with pytest.raises(ValidationError) as excinfo:
+            rikishi.save()
+        assert "'height': ['Ensure this value is less than or equal to 250.']" in str(excinfo.value)
+
+    def test_weight_max_and_min(self):
+        rikishi = Rikishi.objects.get(id=1)
+        rikishi.weight = 49
+        with pytest.raises(ValidationError) as excinfo:
+            rikishi.save()
+        assert "'weight': ['Ensure this value is greater than or equal to 50.']" in str(excinfo.value)
+
+        rikishi.weight = 351
+        with pytest.raises(ValidationError) as excinfo:
+            rikishi.save()
+        assert "'weight': ['Ensure this value is less than or equal to 350.']" in str(excinfo.value)
 
     def test_cannot_create_rikishi_under_fifteen(self):
         today = datetime.date.today()

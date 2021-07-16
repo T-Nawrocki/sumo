@@ -2,6 +2,7 @@ from datetime import date
 
 from django.contrib.postgres.fields import ArrayField
 from django.core.exceptions import ValidationError
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.db.models.constraints import UniqueConstraint
 from django.db.models.query_utils import Q
@@ -50,8 +51,10 @@ class Rikishi(ValidateModelMixin, models.Model):
 
     birth_name = models.CharField(max_length=255)
     date_of_birth = models.DateField()
-    height = models.PositiveSmallIntegerField(verbose_name="Height (cm)")
-    weight = models.PositiveSmallIntegerField(verbose_name="Weight (kg)")
+    height = models.IntegerField(
+        verbose_name="Height (cm)", validators=[MinValueValidator(150), MaxValueValidator(250)]
+    )
+    weight = models.IntegerField(verbose_name="Weight (kg)", validators=[MinValueValidator(50), MaxValueValidator(350)])
 
     # HISTORY FIELDS
     shikona_history = ArrayField(models.CharField(max_length=255), default=list, blank=True)
