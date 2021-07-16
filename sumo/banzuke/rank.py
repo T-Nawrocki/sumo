@@ -23,7 +23,3 @@ SIDES = (
 
 def choices_from(tuple):
     return [(element[0], element[1]) for element in tuple]
-
-
-def abbreviations_from(tuple):
-    return {element[0]: element[2] for element in tuple}

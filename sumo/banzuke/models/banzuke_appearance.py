@@ -18,7 +18,7 @@ class BanzukeAppearance(ValidateModelMixin, models.Model):
     banzuke = models.ForeignKey("banzuke.banzuke", on_delete=models.CASCADE)
     rikishi = models.ForeignKey("rikishi.rikishi", on_delete=models.CASCADE)
 
-    division = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(6)])
-    makuuchi_rank = models.IntegerField(blank=True, null=True, validators=[MinValueValidator(1), MaxValueValidator(5)])
+    division = models.IntegerField(choices=rank.choices_from(rank.DIVISIONS))
+    makuuchi_rank = models.IntegerField(blank=True, null=True, choices=rank.choices_from(rank.MAKUUCHI))
     numeric_rank = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(150)])
     side = models.IntegerField(choices=rank.choices_from(rank.SIDES))

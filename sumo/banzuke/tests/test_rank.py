@@ -9,12 +9,3 @@ class TestRank:
         assert rank.choices_from(rank.DIVISIONS) == divisions
         assert rank.choices_from(rank.MAKUUCHI) == makuuchi
         assert rank.choices_from(rank.SIDES) == sides
-
-    def test_can_get_abbreviations_from_tuples(self):
-        divisions = rank.abbreviations_from(rank.DIVISIONS)
-        makuuchi = rank.abbreviations_from(rank.MAKUUCHI)
-        sides = rank.abbreviations_from(rank.SIDES)
-
-        assert divisions[2] == 'J'
-        assert makuuchi[1] == 'Y'
-        assert sides[2] == 'W'

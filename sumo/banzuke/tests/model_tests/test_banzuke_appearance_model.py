@@ -17,34 +17,12 @@ class TestBanzukeAppearance:
     def test_has_division(self, banzuke_appearance):
         assert banzuke_appearance.division == 1
 
-    def test_division_max_and_min(self, banzuke_appearance):
-        banzuke_appearance.division = 0
-        with pytest.raises(ValidationError) as excinfo:
-            banzuke_appearance.save()
-        assert "'division': ['Ensure this value is greater than or equal to 1.']" in str(excinfo.value)
-
-        banzuke_appearance.division = 7
-        with pytest.raises(ValidationError) as excinfo:
-            banzuke_appearance.save()
-        assert "'division': ['Ensure this value is less than or equal to 6.']" in str(excinfo.value)
-
     def test_has_makuuchi_rank(self, banzuke_appearance):
         assert banzuke_appearance.makuuchi_rank == 1
 
     def test_makuuchi_rank_can_be_none(self, banzuke_appearance):
         banzuke_appearance.makuuchi_rank = None
         banzuke_appearance.save()
-
-    def test_makuuchi_rank_max_and_min(self, banzuke_appearance):
-        banzuke_appearance.makuuchi_rank = 0
-        with pytest.raises(ValidationError) as excinfo:
-            banzuke_appearance.save()
-        assert "'makuuchi_rank': ['Ensure this value is greater than or equal to 1.']" in str(excinfo.value)
-
-        banzuke_appearance.makuuchi_rank = 6
-        with pytest.raises(ValidationError) as excinfo:
-            banzuke_appearance.save()
-        assert "'makuuchi_rank': ['Ensure this value is less than or equal to 5.']" in str(excinfo.value)
 
     def test_has_numeric_rank(self, banzuke_appearance):
         assert banzuke_appearance.numeric_rank == 1
@@ -59,6 +37,9 @@ class TestBanzukeAppearance:
         with pytest.raises(ValidationError) as excinfo:
             banzuke_appearance.save()
         assert "numeric_rank': ['Ensure this value is less than or equal to 150.']" in str(excinfo.value)
+
+    def test_has_side(self, banzuke_appearance):
+        assert banzuke_appearance.side == 1
 
     # RELATIONSHIPS
     def test_has_banzuke(self, banzuke_appearance):
