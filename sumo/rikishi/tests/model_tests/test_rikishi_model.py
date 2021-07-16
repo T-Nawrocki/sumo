@@ -2,6 +2,7 @@ import datetime
 
 import pytest
 from django.core.exceptions import ValidationError
+from django.db.utils import IntegrityError
 
 from sumo.rikishi.models.heya import Heya
 from sumo.rikishi.models.rikishi import Rikishi
@@ -141,9 +142,11 @@ class TestRikishi:
             heya_id=1,
             shusshin_id=1
         )
-        with pytest.raises(ValidationError) as excinfo:
+        with pytest.raises(IntegrityError) as excinfo:
             rikishi.save()
-        assert 'An active Rikishi already exists with that first name.' in str(excinfo.value)
+        assert 'duplicate key value violates unique constraint "unique_shikona_for_active_rikishi"' in str(
+            excinfo.value
+        )
 
     def test_can_create_rikishi_with_same_name_as_inactive_rikishi(self):
         rikishi = Rikishi(

@@ -3,6 +3,8 @@ from datetime import date
 from django.contrib.postgres.fields import ArrayField
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.db.models.constraints import UniqueConstraint
+from django.db.models.query_utils import Q
 
 from sumo.common.mixins.validate_model_mixin import ValidateModelMixin
 
@@ -31,6 +33,11 @@ class Rikishi(ValidateModelMixin, models.Model):
 
     class Meta:
         verbose_name_plural = "Rikishi"
+        constraints = [
+            UniqueConstraint(
+                fields=['shikona_first'], condition=Q(is_active=True), name='unique_shikona_for_active_rikishi'
+            )
+        ]
 
     objects = RikishiManager()
 
@@ -55,13 +62,6 @@ class Rikishi(ValidateModelMixin, models.Model):
     shusshin = models.ForeignKey('rikishi.shusshin', on_delete=models.CASCADE)
 
     # CLEANING, VALIDATION AND SAVING
-    def _validate_first_name_is_unique(self):
-        matching_rikishi_exists = Rikishi.objects.exclude(id=self.id).filter(
-            is_active=True,
-            shikona_first=self.shikona_first,
-        ).exists()
-        if matching_rikishi_exists:
-            raise ValidationError('An active Rikishi already exists with that first name.')
 
     def _validate_age(self):
         if self.age < 15:
@@ -71,8 +71,6 @@ class Rikishi(ValidateModelMixin, models.Model):
         self.shikona_first = self.shikona_first.lower()
         self.shikona_second = self.shikona_second.lower()
 
-        if self.is_active:
-            self._validate_first_name_is_unique()
         self._validate_age()
 
     def _update_shikona_history(self, old_data):
