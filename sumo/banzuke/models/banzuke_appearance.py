@@ -21,10 +21,11 @@ class BanzukeAppearance(ValidateModelMixin, models.Model):
         constraints = [models.UniqueConstraint(fields=['banzuke', 'rikishi'], name='unique_banzuke_appearance')]
 
     # MODEL FIELDS
+    division = models.IntegerField(choices=rank.division_choices())
+    makuuchi_rank = models.IntegerField(blank=True, null=True, choices=rank.makuuchi_rank_choices())
+    numeric_rank = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(150)])
+    side = models.IntegerField(choices=rank.side_choices())
+
+    # RELATIONSHIPS
     banzuke = models.ForeignKey("banzuke.banzuke", on_delete=models.CASCADE)
     rikishi = models.ForeignKey("rikishi.rikishi", on_delete=models.CASCADE)
-
-    division = models.IntegerField(choices=rank.choices_from(rank.DIVISIONS))
-    makuuchi_rank = models.IntegerField(blank=True, null=True, choices=rank.choices_from(rank.MAKUUCHI))
-    numeric_rank = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(150)])
-    side = models.IntegerField(choices=rank.choices_from(rank.SIDES))
