@@ -74,3 +74,24 @@ class BanzukeAppearance(ValidateModelMixin, models.Model):
     # RELATIONSHIPS
     banzuke = models.ForeignKey("banzuke.banzuke", on_delete=models.CASCADE)
     rikishi = models.ForeignKey("rikishi.rikishi", on_delete=models.CASCADE)
+
+    # PROPERTIES
+    @property
+    def division_abbreviation(self):
+        if self.division == 1:
+            return self.MAKUUCHI_RANK_ABBREVIATIONS[self.makuuchi_rank]
+        else:
+            return self.DIVISION_ABBREVIATIONS[self.division]
+
+    @property
+    def side_abbreviation(self):
+        return self.SIDE_ABBREVIATIONS[self.side]
+
+    @property
+    def rank_short(self):
+        return f"{self.division_abbreviation}{self.numeric_rank}{self.side_abbreviation}"
+
+    @property
+    def rank_full(self):
+        rank = self.get_makuuchi_rank_display() if self.division == 1 else self.get_division_display()
+        return f"{rank} {self.numeric_rank} {self.get_side_display()}"

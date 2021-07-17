@@ -61,3 +61,41 @@ class TestBanzukeAppearance:
         with pytest.raises(ValidationError) as excinfo:
             BanzukeAppearance.objects.create(rikishi=rikishi, banzuke=banzuke, division=1, numeric_rank=1)
         assert "'Banzuke appearance with this Banzuke and Rikishi already exists.'" in str(excinfo.value)
+
+    # PROPERTIES
+    def test_division_abbreviation_for_makuuchi(self, banzuke_appearance):
+        assert banzuke_appearance.division_abbreviation == 'Y'
+        banzuke_appearance.makuuchi_rank = 2
+        assert banzuke_appearance.division_abbreviation == 'O'
+        banzuke_appearance.makuuchi_rank = 3
+        assert banzuke_appearance.division_abbreviation == 'S'
+        banzuke_appearance.makuuchi_rank = 4
+        assert banzuke_appearance.division_abbreviation == 'K'
+        banzuke_appearance.makuuchi_rank = 5
+        assert banzuke_appearance.division_abbreviation == 'M'
+
+    def test_division_abbreviation_for_lower_divisions(self, banzuke_appearance):
+        banzuke_appearance.division = 2
+        assert banzuke_appearance.division_abbreviation == 'J'
+        banzuke_appearance.division = 3
+        assert banzuke_appearance.division_abbreviation == 'Ms'
+        banzuke_appearance.division = 4
+        assert banzuke_appearance.division_abbreviation == 'Sd'
+        banzuke_appearance.division = 5
+        assert banzuke_appearance.division_abbreviation == 'Jd'
+        banzuke_appearance.division = 6
+        assert banzuke_appearance.division_abbreviation == 'Jk'
+
+    def test_side_abbreviations(self, banzuke_appearance):
+        assert banzuke_appearance.side_abbreviation == 'e'
+        banzuke_appearance.side = 2
+        assert banzuke_appearance.side_abbreviation == 'w'
+
+    def test_can_get_short_rank(self, banzuke_appearance):
+        assert banzuke_appearance.rank_short == "Y1e"
+
+    def test_can_get_full_rank(self, banzuke_appearance):
+        assert banzuke_appearance.rank_full == "Yokozuna 1 East"
+        banzuke_appearance.division = 3
+        banzuke_appearance.side = 2
+        assert banzuke_appearance.rank_full == "Makushita 1 West"
