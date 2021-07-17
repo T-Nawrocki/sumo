@@ -12,9 +12,15 @@ class BanzukeAppearance(ValidateModelMixin, models.Model):
     Ranks are represented as integers for easy comparison.
     """
 
+    # META
+
+    def __str__(self):
+        return f"{self.rikishi} appearance on {self.banzuke}"
+
     class Meta:
         constraints = [models.UniqueConstraint(fields=['banzuke', 'rikishi'], name='unique_banzuke_appearance')]
 
+    # MODEL FIELDS
     banzuke = models.ForeignKey("banzuke.banzuke", on_delete=models.CASCADE)
     rikishi = models.ForeignKey("rikishi.rikishi", on_delete=models.CASCADE)
 

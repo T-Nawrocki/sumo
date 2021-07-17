@@ -13,6 +13,10 @@ class TestBanzukeAppearance:
     def banzuke_appearance(self):
         return BanzukeAppearance.objects.get(id=1)
 
+    # META
+    def test_string_representation(self, banzuke_appearance):
+        assert str(banzuke_appearance) == "Hakuho Sho appearance on Banzuke for Basho object (1)"
+
     # MODEL FIELDS
     def test_has_division(self, banzuke_appearance):
         assert banzuke_appearance.division == 1

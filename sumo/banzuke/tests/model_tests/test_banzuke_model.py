@@ -12,6 +12,10 @@ class TestBanzuke:
     def banzuke(self):
         return Banzuke.objects.get(id=1)
 
+    # META
+    def test_string_representation(self, banzuke):
+        assert str(banzuke) == "Banzuke for Basho object (1)"
+
     # RELATIONSHIPS
     def test_has_basho(self, banzuke):
         basho = Basho.objects.get(id=1)
