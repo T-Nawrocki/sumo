@@ -95,3 +95,35 @@ class BanzukeAppearance(ValidateModelMixin, models.Model):
     def rank_full(self):
         rank = self.get_makuuchi_rank_display() if self.division == 1 else self.get_division_display()
         return f"{rank} {self.numeric_rank} {self.get_side_display()}"
+
+    # METHODS
+    def is_higher_rank_than(self, other_appearance):
+        """
+        Compares the ranks of two BanzukeAppearance instances.
+        Returns:
+            * True  : if the calling instance is higher rank than the argument
+            * False : if the argument is higher rank than the calling instance
+            * None : if the two instances have the same rank
+        
+        Be careful when comparing using this function. `not banzuke_appearance.is_higher_rank_than(other_appearance)`
+        will be True even if the two instances have the same rank. If in doubt, use
+        `banzuke_appearance.is_higher_rank_than(other_appearance) is False` instead.
+
+        (Remember, we're talking about a higher rank in real-terms, not numerically.
+        Higher ranks are represented by lower numbers.)
+        """
+        if self.rank_short == other_appearance.rank_short:
+            return None
+
+        same_division = self.division == other_appearance.division
+        same_makuuchi_rank = self.makuuchi_rank == other_appearance.makuuchi_rank
+        same_numeric_rank = self.numeric_rank == other_appearance.numeric_rank
+
+        if same_division and same_makuuchi_rank and same_numeric_rank:
+            return self.side < other_appearance.side
+        elif same_division and same_makuuchi_rank: # Also covers non-makuuchi where makuuchi_rank is None
+            return self.numeric_rank < other_appearance.numeric_rank
+        elif same_division and self.division == 1:
+            return self.makuuchi_rank < other_appearance.makuuchi_rank
+        else:
+            return self.division < other_appearance.division
