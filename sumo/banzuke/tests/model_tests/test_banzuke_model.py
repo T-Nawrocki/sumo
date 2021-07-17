@@ -8,14 +8,16 @@ from sumo.rikishi.models.rikishi import Rikishi
 @pytest.mark.django_db
 class TestBanzuke:
 
+    @pytest.fixture(scope='function')
+    def banzuke(self):
+        return Banzuke.objects.get(id=1)
+
     # RELATIONSHIPS
-    def test_has_basho(self):
-        banzuke = Banzuke.objects.get(id=1)
+    def test_has_basho(self, banzuke):
         basho = Basho.objects.get(id=1)
         assert banzuke.basho == basho
 
-    def test_has_competitors(self):
-        banzuke = Banzuke.objects.get(id=1)
+    def test_has_competitors(self, banzuke):
         rikishi = Rikishi.objects.get(id=1)
         assert len(banzuke.competitors.all()) == 1
         assert banzuke.competitors.first() == rikishi

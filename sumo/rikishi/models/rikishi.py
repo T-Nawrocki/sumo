@@ -73,7 +73,6 @@ class Rikishi(ValidateModelMixin, models.Model):
     def clean(self):
         self.shikona_first = self.shikona_first.lower()
         self.shikona_second = self.shikona_second.lower()
-
         self._validate_age()
 
     def _update_shikona_history(self, old_data):
