@@ -54,10 +54,21 @@ class TestBanzukeAppearance:
         rikishi = Rikishi.objects.get(id=1)
         assert banzuke_appearance.rikishi == rikishi
 
+    # CLEANING, VALIDATION AND CONSTRAINTS
     def test_banzuke_rikshi_pair_must_be_unique(self):
         with pytest.raises(ValidationError) as excinfo:
-            BanzukeAppearance.objects.create(rikishi_id=1, banzuke_id=1, division=1, numeric_rank=1)
-        assert "'Banzuke appearance with this Banzuke and Rikishi already exists.'" in str(excinfo.value)
+            BanzukeAppearance.objects.create(
+                rikishi_id=1, banzuke_id=1, division=1, makuuchi_rank=1, numeric_rank=1, side=2
+            )
+        assert "Banzuke appearance with this Banzuke and Rikishi already exists." in str(excinfo.value)
+
+    def test_rank_must_be_unique_for_banzuke(self):
+        with pytest.raises(ValidationError) as excinfo:
+            BanzukeAppearance.objects.create(
+                rikishi_id=2, banzuke_id=1, division=1, makuuchi_rank=1, numeric_rank=1, side=1
+            )
+        assert "Banzuke appearance with this Banzuke, Division, Makuuchi rank, " \
+            "Numeric rank and Side already exists." in str(excinfo.value)
 
     # PROPERTIES
     def test_division_abbreviation_for_makuuchi(self, banzuke_appearance):

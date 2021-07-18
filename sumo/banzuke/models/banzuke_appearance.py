@@ -63,7 +63,12 @@ class BanzukeAppearance(ValidateModelMixin, models.Model):
         return f"{self.rikishi} appearance on {self.banzuke}"
 
     class Meta:
-        constraints = [models.UniqueConstraint(fields=['banzuke', 'rikishi'], name='unique_banzuke_appearance')]
+        constraints = [
+            models.UniqueConstraint(fields=['banzuke', 'rikishi'], name='unique_banzuke_appearance'),
+            models.UniqueConstraint(
+                fields=['banzuke', 'division', 'makuuchi_rank', 'numeric_rank', 'side'], name='unique_banzuke_rank'
+            )
+        ]
 
     # MODEL FIELDS
     division = models.IntegerField(choices=DIVISION_CHOICES)
