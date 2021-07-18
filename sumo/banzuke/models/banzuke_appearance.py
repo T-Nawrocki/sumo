@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
@@ -80,6 +81,16 @@ class BanzukeAppearance(ValidateModelMixin, models.Model):
     banzuke = models.ForeignKey("banzuke.banzuke", on_delete=models.CASCADE)
     rikishi = models.ForeignKey("rikishi.rikishi", on_delete=models.CASCADE)
 
+    # CLEANING AND VALIDATION
+    def _validate_makuuchi_rank(self):
+        if self.division != 1:
+            self.makuuchi_rank = None
+        elif self.makuuchi_rank is None:
+            raise ValidationError('Must specify Makuuchi Rank for Rikishi in the top division.')
+
+    def clean(self):
+        self._validate_makuuchi_rank()
+
     # PROPERTIES
     @property
     def division_abbreviation(self):
@@ -109,7 +120,7 @@ class BanzukeAppearance(ValidateModelMixin, models.Model):
             * True  : if the calling instance is higher rank than the argument
             * False : if the argument is higher rank than the calling instance
             * None : if the two instances have the same rank
-        
+
         Be careful when comparing using this function. `not banzuke_appearance.is_higher_rank_than(other_appearance)`
         will be True even if the two instances have the same rank. If in doubt, use
         `banzuke_appearance.is_higher_rank_than(other_appearance) is False` instead.

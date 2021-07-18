@@ -25,6 +25,7 @@ class TestBanzukeAppearance:
         assert banzuke_appearance.makuuchi_rank == 1
 
     def test_makuuchi_rank_can_be_none(self, banzuke_appearance):
+        banzuke_appearance.division = 2
         banzuke_appearance.makuuchi_rank = None
         banzuke_appearance.save()
 
@@ -69,6 +70,16 @@ class TestBanzukeAppearance:
             )
         assert "Banzuke appearance with this Banzuke, Division, Makuuchi rank, " \
             "Numeric rank and Side already exists." in str(excinfo.value)
+
+    def test_makuuchi_rank_validation(self, banzuke_appearance):
+        banzuke_appearance.division = 2
+        banzuke_appearance.save()
+        assert banzuke_appearance.makuuchi_rank is None
+
+        banzuke_appearance.division = 1
+        with pytest.raises(ValidationError) as excinfo:
+            banzuke_appearance.save()
+        assert "Must specify Makuuchi Rank for Rikishi in the top division." in str(excinfo.value)
 
     # PROPERTIES
     def test_division_abbreviation_for_makuuchi(self, banzuke_appearance):
