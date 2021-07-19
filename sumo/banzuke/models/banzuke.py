@@ -16,3 +16,7 @@ class Banzuke(ValidateModelMixin, models.Model):
     # RELATIONSHIPS
     basho = models.OneToOneField("basho.Basho", on_delete=models.CASCADE)
     competitors = models.ManyToManyField("rikishi.Rikishi", through='banzuke.BanzukeAppearance')
+
+    # METHODS
+    def get_flat_banzuke_list(self):
+        return list(self.banzukeappearance_set.all().order_by('division', 'makuuchi_rank', 'numeric_rank', 'side'))

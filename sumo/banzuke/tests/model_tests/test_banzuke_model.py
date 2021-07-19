@@ -1,6 +1,7 @@
 import pytest
 
 from sumo.banzuke.models.banzuke import Banzuke
+from sumo.banzuke.models.banzuke_appearance import BanzukeAppearance
 from sumo.basho.models.basho import Basho
 from sumo.rikishi.models.rikishi import Rikishi
 
@@ -27,3 +28,10 @@ class TestBanzuke:
         assert banzuke.competitors.first() == rikishi
 
     # METHODS
+    def test_can_get_flat_banzuke_list(self, banzuke):
+        flat_banzuke = banzuke.get_flat_banzuke_list()
+        assert isinstance(flat_banzuke, list)
+        assert len(flat_banzuke) == 70
+        assert flat_banzuke[0] == BanzukeAppearance.objects.get(id=1)
+        assert flat_banzuke[41] == BanzukeAppearance.objects.get(id=42)
+        assert flat_banzuke[69] == BanzukeAppearance.objects.get(id=70)
