@@ -112,6 +112,16 @@ class BanzukeAppearance(ValidateModelMixin, models.Model):
         rank = self.get_makuuchi_rank_display() if self.division == 1 else self.get_division_display()
         return f"{rank} {self.numeric_rank} {self.get_side_display()}"
 
+    @property
+    def absolute_rank(self):
+        """
+        Returns an absolute rank for the banzuke appearance
+        (ie, ignoring divisions, sanyaku and sides, if you put all the rikishi
+        in a banzuke in a list from highest to lowest rank, where would this
+        banzuke appearance fall on that list)
+        """
+        return self.banzuke.get_flat_banzuke_list().index(self) + 1
+
     # METHODS
     def is_higher_rank_than(self, other_appearance):
         """

@@ -119,6 +119,9 @@ class TestBanzukeAppearance:
         banzuke_appearance.side = 2
         assert banzuke_appearance.rank_full == "Makushita 1 West"
 
+    def test_can_get_absolute_rank(self, banzuke_appearance):
+        assert banzuke_appearance.absolute_rank == 1
+
     # METHODS
     def test_is_higher_rank_than(self, banzuke_appearance):
         # Same rank exactly
