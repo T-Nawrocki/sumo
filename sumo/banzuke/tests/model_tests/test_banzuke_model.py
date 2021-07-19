@@ -23,5 +23,7 @@ class TestBanzuke:
 
     def test_has_competitors(self, banzuke):
         rikishi = Rikishi.objects.get(id=1)
-        assert len(banzuke.competitors.all()) == 1
+        assert len(banzuke.competitors.all()) == 70
         assert banzuke.competitors.first() == rikishi
+
+    # METHODS

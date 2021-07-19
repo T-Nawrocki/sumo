@@ -18,7 +18,7 @@ class TestRikishiManager:
         assert active.first() == rikishi
 
     def test_can_get_inactive_rikishi(self):
-        rikishi = Rikishi.objects.get(id=2)
+        rikishi = Rikishi.objects.get(id=71)
         inactive = Rikishi.objects.inactive()
         assert inactive.first() == rikishi
 
@@ -27,35 +27,35 @@ class TestRikishiManager:
 class TestRikishi:
 
     @pytest.fixture(scope='function')
-    def rikishi_1(self):
+    def hakuho(self):
         return Rikishi.objects.get(id=1)
 
     @pytest.fixture(scope='function')
-    def rikishi_2(self):
-        return Rikishi.objects.get(id=2)
+    def harumafuji(self):
+        return Rikishi.objects.get(id=71)
 
     # META
-    def test_string_representation(self, rikishi_1):
-        assert str(rikishi_1) == 'Hakuho Sho'
+    def test_string_representation(self, hakuho):
+        assert str(hakuho) == 'Hakuho Sho'
 
     # BASIC MODEL FIELDS
-    def test_basic_rikishi_model_fields(self, rikishi_1):
-        assert rikishi_1.shikona_first == "hakuho"
-        assert rikishi_1.shikona_second == "sho"
-        assert rikishi_1.is_active
-        assert rikishi_1.birth_name == "Monkhbatyn Davaajargal"
-        assert rikishi_1.date_of_birth == datetime.date(1985, 3, 11)
-        assert rikishi_1.height == 192
-        assert rikishi_1.weight == 158
+    def test_basic_rikishi_model_fields(self, hakuho):
+        assert hakuho.shikona_first == "hakuho"
+        assert hakuho.shikona_second == "sho"
+        assert hakuho.is_active
+        assert hakuho.birth_name == "Mönkhbat Davaajargal"
+        assert hakuho.date_of_birth == datetime.date(1985, 3, 11)
+        assert hakuho.height == 192
+        assert hakuho.weight == 152
 
     # HISTORY FIELDS
-    def test_has_shikona_history(self, rikishi_2):
-        assert rikishi_2.shikona_history == ['ama kohei', 'harumafuji kohei']
+    def test_has_shikona_history(self, harumafuji):
+        assert harumafuji.shikona_history == ['ama kohei', 'harumafuji kohei']
 
     def test_default_shikona_history_on_creation(self):
         rikishi = Rikishi.objects.create(
-            shikona_first="Enho",
-            shikona_second="Akira",
+            shikona_first="New",
+            shikona_second="Rikishi",
             birth_name="Yūya Nakamura",
             date_of_birth=datetime.date(1994, 10, 18),
             height=168,
@@ -63,27 +63,27 @@ class TestRikishi:
             heya_id=1,
             shusshin_id=1
         )
-        assert rikishi.shikona_history == ["enho akira"]
+        assert rikishi.shikona_history == ["new rikishi"]
 
-    def test_shikona_history_updates_when_name_is_changed(self, rikishi_1):
-        assert rikishi_1.shikona_history == ['hakuho sho']
-        rikishi_1.shikona_first = "hokuha"
-        rikishi_1.save()
-        assert rikishi_1.shikona_history == ['hakuho sho', 'hokuha sho']
+    def test_shikona_history_updates_when_name_is_changed(self, hakuho):
+        assert hakuho.shikona_history == ['hakuho sho']
+        hakuho.shikona_first = "hokuha"
+        hakuho.save()
+        assert hakuho.shikona_history == ['hakuho sho', 'hokuha sho']
 
-    def test_shikona_history_does_not_update_if_name_has_not_changed(self, rikishi_1):
-        assert rikishi_1.shikona_history == ['hakuho sho']
-        rikishi_1.is_active = False
-        rikishi_1.save()
-        assert rikishi_1.shikona_history == ['hakuho sho']
+    def test_shikona_history_does_not_update_if_name_has_not_changed(self, hakuho):
+        assert hakuho.shikona_history == ['hakuho sho']
+        hakuho.is_active = False
+        hakuho.save()
+        assert hakuho.shikona_history == ['hakuho sho']
 
-    def test_has_heya_id_history(self, rikishi_2):
-        assert rikishi_2.heya_id_history == [1, 2]
+    def test_has_heya_id_history(self, harumafuji):
+        assert harumafuji.heya_id_history == [32, 2]
 
     def test_default_heya_id_history_on_rikishi_creation(self):
         rikishi = Rikishi.objects.create(
-            shikona_first="Enho",
-            shikona_second="Akira",
+            shikona_first="New",
+            shikona_second="Rikishi",
             birth_name="Yūya Nakamura",
             date_of_birth=datetime.date(1994, 10, 18),
             height=168,
@@ -93,32 +93,32 @@ class TestRikishi:
         )
         assert rikishi.heya_id_history == [1]
 
-    def test_heya_id_history_updates_when_heya_is_changed(self, rikishi_1):
-        assert rikishi_1.heya_id_history == [1]
-        rikishi_1.heya_id = 2
-        rikishi_1.save()
-        assert rikishi_1.heya_id_history == [1, 2]
+    def test_heya_id_history_updates_when_heya_is_changed(self, hakuho):
+        assert hakuho.heya_id_history == [1]
+        hakuho.heya_id = 2
+        hakuho.save()
+        assert hakuho.heya_id_history == [1, 2]
 
-    def test_heya_id_history_does_not_update_if_heya_has_not_changed(self, rikishi_1):
-        assert rikishi_1.heya_id_history == [1]
-        rikishi_1.is_active = False
-        rikishi_1.save()
-        assert rikishi_1.heya_id_history == [1]
+    def test_heya_id_history_does_not_update_if_heya_has_not_changed(self, hakuho):
+        assert hakuho.heya_id_history == [1]
+        hakuho.is_active = False
+        hakuho.save()
+        assert hakuho.heya_id_history == [1]
 
     # RELATIONSHIPS
-    def test_rikishi_has_heya(self, rikishi_1):
+    def test_rikishi_has_heya(self, hakuho):
         heya = Heya.objects.get(id=1)
-        assert rikishi_1.heya == heya
+        assert hakuho.heya == heya
 
-    def test_rikishi_has_shusshin(self, rikishi_1):
+    def test_rikishi_has_shusshin(self, hakuho):
         shusshin = Shusshin.objects.get(id=1)
-        assert rikishi_1.shusshin == shusshin
+        assert hakuho.shusshin == shusshin
 
     # CLEANING AND VALIDATION
     def test_rikishi_name_is_cleaned_to_lowercase(self):
         rikishi = Rikishi.objects.create(
-            shikona_first="Enho",
-            shikona_second="Akira",
+            shikona_first="New",
+            shikona_second="Rikishi",
             birth_name="Yūya Nakamura",
             date_of_birth=datetime.date(1994, 10, 18),
             height=168,
@@ -126,8 +126,8 @@ class TestRikishi:
             heya_id=1,
             shusshin_id=1
         )
-        assert rikishi.shikona_first == "enho"
-        assert rikishi.shikona_second == "akira"
+        assert rikishi.shikona_first == "new"
+        assert rikishi.shikona_second == "rikishi"
 
     def test_cannot_create_rikishi_with_same_name_as_another_active_rikishi(self):
         rikishi = Rikishi(
@@ -173,26 +173,26 @@ class TestRikishi:
         )
         rikishi.save()
 
-    def test_height_max_and_min(self, rikishi_1):
-        rikishi_1.height = 149
+    def test_height_max_and_min(self, hakuho):
+        hakuho.height = 149
         with pytest.raises(ValidationError) as excinfo:
-            rikishi_1.save()
+            hakuho.save()
         assert "'height': ['Ensure this value is greater than or equal to 150.']" in str(excinfo.value)
 
-        rikishi_1.height = 251
+        hakuho.height = 251
         with pytest.raises(ValidationError) as excinfo:
-            rikishi_1.save()
+            hakuho.save()
         assert "'height': ['Ensure this value is less than or equal to 250.']" in str(excinfo.value)
 
-    def test_weight_max_and_min(self, rikishi_1):
-        rikishi_1.weight = 49
+    def test_weight_max_and_min(self, hakuho):
+        hakuho.weight = 49
         with pytest.raises(ValidationError) as excinfo:
-            rikishi_1.save()
+            hakuho.save()
         assert "'weight': ['Ensure this value is greater than or equal to 50.']" in str(excinfo.value)
 
-        rikishi_1.weight = 351
+        hakuho.weight = 351
         with pytest.raises(ValidationError) as excinfo:
-            rikishi_1.save()
+            hakuho.save()
         assert "'weight': ['Ensure this value is less than or equal to 350.']" in str(excinfo.value)
 
     def test_cannot_create_rikishi_under_fifteen(self):
@@ -219,14 +219,14 @@ class TestRikishi:
         assert 'Rikishi cannot be under 15.' in str(excinfo.value)
 
     # PROPERTIES
-    def test_can_get_age(self, rikishi_1):
+    def test_can_get_age(self, hakuho):
         today = datetime.date.today()
-        upcoming_birthday = ((today.month, today.day) < (rikishi_1.date_of_birth.month, rikishi_1.date_of_birth.day))
-        expected_age = today.year - rikishi_1.date_of_birth.year - upcoming_birthday
-        assert rikishi_1.age == expected_age
+        upcoming_birthday = ((today.month, today.day) < (hakuho.date_of_birth.month, hakuho.date_of_birth.day))
+        expected_age = today.year - hakuho.date_of_birth.year - upcoming_birthday
+        assert hakuho.age == expected_age
 
-    def test_can_get_shikona_full(self, rikishi_1):
-        assert rikishi_1.shikona_full == "hakuho sho"
+    def test_can_get_shikona_full(self, hakuho):
+        assert hakuho.shikona_full == "hakuho sho"
 
-    def test_can_get_shikona_display(self, rikishi_1):
-        assert rikishi_1.shikona_display == "Hakuho Sho"
+    def test_can_get_shikona_display(self, hakuho):
+        assert hakuho.shikona_display == "Hakuho Sho"

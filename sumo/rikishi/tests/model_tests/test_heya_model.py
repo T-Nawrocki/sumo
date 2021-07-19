@@ -28,8 +28,8 @@ class TestHeya:
 
     # CLEANING AND VALIDATION
     def test_name_is_cleaned_to_lowercase(self):
-        new_heya = Heya.objects.create(name='Kise')
-        assert new_heya.name == "kise"
+        new_heya = Heya.objects.create(name='Hakuho')
+        assert new_heya.name == "hakuho"
 
     def test_cannot_create_heya_with_same_name_as_another_active_heya(self):
         new_heya = Heya(name='miyagino')
