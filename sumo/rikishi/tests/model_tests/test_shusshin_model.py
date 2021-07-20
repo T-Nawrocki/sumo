@@ -13,6 +13,14 @@ class TestShusshin:
         return Shusshin.objects.get(id=2)
 
     # META
+    def test_equality(self, hokkaido):
+        assert hokkaido == hokkaido
+        assert hokkaido == Shusshin(town=hokkaido.town, prefecture=hokkaido.prefecture)
+        assert hokkaido == Shusshin(town='different town in the same prefecture', prefecture=hokkaido.prefecture)
+        assert hokkaido != Shusshin(town=hokkaido.town, prefecture='tokyo')
+        assert hokkaido != Shusshin(town=hokkaido.town, country='MN')
+        assert Shusshin(town='Town A', country='MN') == Shusshin(town='Town B', country='MN')
+
     def test_string_representation(self, hokkaido):
         assert str(hokkaido) == "Hokkaidō"
         hokkaido.prefecture = "shimane"
@@ -30,6 +38,15 @@ class TestShusshin:
     def test_heya_has_rikishi_set(self, hokkaido):
         rikishi = Rikishi.objects.get(id=42)
         assert rikishi in hokkaido.rikishi_set.all()
+
+    # PROPERTIES
+    def test_has_value(self, hokkaido):
+        assert hokkaido.value == "Hokkaidō"
+        hokkaido.prefecture = "shimane"
+        assert hokkaido.value == "Shimane-ken"
+        hokkaido.prefecture = None
+        hokkaido.country = "MN"
+        assert hokkaido.value == "Mongolia"
 
     # CLEANING
     def test_cannot_create_shusshin_with_invalid_country(self):

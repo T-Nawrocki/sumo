@@ -11,11 +11,13 @@ class Shusshin(ValidateModelMixin, models.Model):
     """A shusshin (place of origin). Primarily acts as a collection of Rikishi."""
 
     # META
+    def __eq__(self, other):
+        if isinstance(other, Shusshin):
+            return self.value == other.value
+        return False
+
     def __str__(self):
-        if self.prefecture:
-            return prefectures.full_display_name(self.prefecture)
-        else:
-            return choices_as_dict(countries.COUNTRIES)[self.country]
+        return self.value
 
     class Meta:
         verbose_name_plural = "Shusshin"
@@ -29,6 +31,14 @@ class Shusshin(ValidateModelMixin, models.Model):
         help_text="If the Shusshin is not in Japan, prefecture must be blank."
     )
     country = models.CharField(max_length=255, choices=countries.COUNTRIES, default='JP')
+
+    # PROPERTIES
+    @property
+    def value(self):
+        if self.prefecture:
+            return prefectures.full_display_name(self.prefecture)
+        else:
+            return choices_as_dict(countries.COUNTRIES)[self.country]
 
     # CLEANING
     def _validate_prefecture(self):
