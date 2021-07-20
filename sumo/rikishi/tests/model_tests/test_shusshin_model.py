@@ -17,9 +17,10 @@ class TestShusshin:
         assert hokkaido == hokkaido
         assert hokkaido == Shusshin(town=hokkaido.town, prefecture=hokkaido.prefecture)
         assert hokkaido == Shusshin(town='different town in the same prefecture', prefecture=hokkaido.prefecture)
+        assert Shusshin(town='Town A', country='MN') == Shusshin(town='Town B', country='MN')
         assert hokkaido != Shusshin(town=hokkaido.town, prefecture='tokyo')
         assert hokkaido != Shusshin(town=hokkaido.town, country='MN')
-        assert Shusshin(town='Town A', country='MN') == Shusshin(town='Town B', country='MN')
+        assert hokkaido != "Literally just a string"
 
     def test_string_representation(self, hokkaido):
         assert str(hokkaido) == "Hokkaidō"
