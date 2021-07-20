@@ -123,33 +123,22 @@ class BanzukeAppearance(ValidateModelMixin, models.Model):
         return self.banzuke.get_flat_banzuke_list().index(self) + 1
 
     # METHODS
-    def is_higher_rank_than(self, other_appearance):
+    def difference_in_rank_from(self, other_appearance):
         """
-        Compares the ranks of two BanzukeAppearance instances.
-        Returns:
-            * True  : if the calling instance is higher rank than the argument
-            * False : if the argument is higher rank than the calling instance
-            * None : if the two instances have the same rank
+        Compares the calling BanzukeAppearance's absolute rank to that of another BanzukeAppearance.
 
-        Be careful when comparing using this function. `not banzuke_appearance.is_higher_rank_than(other_appearance)`
-        will be True even if the two instances have the same rank. If in doubt, use
-        `banzuke_appearance.is_higher_rank_than(other_appearance) is False` instead.
+        The returned integer is the difference in rank starting at the *argument* BanzukeAppearance.
+        So if the calling BanzukeAppearance is 5 ranks higher than the argument, the method will
+        return *positive* 5. If the calling BanzukeAppearance is 5 ranks lower, it will return -5.
 
-        (Remember, we're talking about a higher rank in real-terms, not numerically.
-        Higher ranks are represented by lower numbers.)
+        Absolute rank is used for comparison, so that the method can be used to compare ranks
+        across different banzuke as well as within one.
+        This may lead to different ranks being returned as equal. For example: the lowest ranked
+        Rikishi in the Makuuchi division of a banzuke may be ranked as as "low" as M18 or
+        arbitrarily high (M14 in Nov 2020, for example), but will always be the 42nd highest
+        Rikishi on the Banzuke, so the ranks are equivalent.
+
+        The returned value is divided by 2 to account for side as a half-rank.
+        So M2e is 0.5 ranks higher than M2w and 0.5 ranks lower than M1w.
         """
-        if self.rank_short == other_appearance.rank_short:
-            return None
-
-        same_division = self.division == other_appearance.division
-        same_makuuchi_rank = self.makuuchi_rank == other_appearance.makuuchi_rank
-        same_numeric_rank = self.numeric_rank == other_appearance.numeric_rank
-
-        if same_division and same_makuuchi_rank and same_numeric_rank:
-            return self.side < other_appearance.side
-        elif same_division and same_makuuchi_rank: # Also covers non-makuuchi where makuuchi_rank is None
-            return self.numeric_rank < other_appearance.numeric_rank
-        elif same_division and self.division == 1:
-            return self.makuuchi_rank < other_appearance.makuuchi_rank
-        else:
-            return self.division < other_appearance.division
+        return (other_appearance.absolute_rank - self.absolute_rank) / 2

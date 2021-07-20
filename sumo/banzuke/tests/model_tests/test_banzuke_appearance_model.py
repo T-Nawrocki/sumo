@@ -123,48 +123,17 @@ class TestBanzukeAppearance:
         assert banzuke_appearance.absolute_rank == 1
 
     # METHODS
-    def test_is_higher_rank_than(self, banzuke_appearance):
-        # Same rank exactly
-        other_appearance = BanzukeAppearance(
-            rikishi_id=2, banzuke_id=1, division=1, makuuchi_rank=1, numeric_rank=1, side=1
-        )
-        assert banzuke_appearance.is_higher_rank_than(other_appearance) is None
-        assert other_appearance.is_higher_rank_than(banzuke_appearance) is None
+    def test_difference_in_rank_from(self, banzuke_appearance):
+        other_appearance = BanzukeAppearance.objects.get(id=2)
+        appearance_in_another_division = BanzukeAppearance.objects.get(id=57)
 
-        # Same division and rank, different sides, makuuchi
-        other_appearance.side = 2
-        assert banzuke_appearance.is_higher_rank_than(other_appearance)
-        assert other_appearance.is_higher_rank_than(banzuke_appearance) is False
+        # whole rank difference
+        assert banzuke_appearance.difference_in_rank_from(appearance_in_another_division) == 28
+        assert appearance_in_another_division.difference_in_rank_from(banzuke_appearance) == -28
 
-        # Same division and rank, different sides, non-makuuchi
-        banzuke_appearance.division = other_appearance.division = 2
-        banzuke_appearance.makuuchi_rank = other_appearance.makuuchi_rank = None
-        assert banzuke_appearance.is_higher_rank_than(other_appearance)
-        assert other_appearance.is_higher_rank_than(banzuke_appearance) is False
+        # half-rank difference
+        assert banzuke_appearance.difference_in_rank_from(other_appearance) == 0.5
+        assert other_appearance.difference_in_rank_from(banzuke_appearance) == -0.5
 
-        # Same division and side, different numeric ranks, non-makuuchi
-        other_appearance.side = banzuke_appearance.side
-        other_appearance.numeric_rank = 2
-        assert banzuke_appearance.is_higher_rank_than(other_appearance)
-        assert other_appearance.is_higher_rank_than(banzuke_appearance) is False
-
-        # Same division, makuuchi rank and side, different numeric ranks
-        banzuke_appearance.division = other_appearance.division = 1
-        banzuke_appearance.makuuchi_rank = other_appearance.makuuchi_rank = 1
-        assert banzuke_appearance.is_higher_rank_than(other_appearance)
-        assert other_appearance.is_higher_rank_than(banzuke_appearance) is False
-
-        # Same division, numeric rank and side, different makuuchi ranks
-        other_appearance.numeric_rank = banzuke_appearance.numeric_rank
-        other_appearance.makuuchi_rank = 2
-        assert banzuke_appearance.is_higher_rank_than(other_appearance)
-        assert other_appearance.is_higher_rank_than(banzuke_appearance) is False
-
-        # Different divisions, same everything else
-        banzuke_appearance.division = 2
-        other_appearance.division = 3
-        banzuke_appearance.makuuchi_rank = other_appearance.makuuchi_rank = None
-        other_appearance.numeric_rank = banzuke_appearance.numeric_rank
-        other_appearance.side = banzuke_appearance.side
-        assert banzuke_appearance.is_higher_rank_than(other_appearance)
-        assert other_appearance.is_higher_rank_than(banzuke_appearance) is False
+        # no difference
+        assert banzuke_appearance.difference_in_rank_from(banzuke_appearance) == 0
