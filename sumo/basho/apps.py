@@ -6,5 +6,5 @@ class BashoConfig(AppConfig):
     name = 'sumo.basho'
 
     def ready(self):
-        from sumo.basho.models import basho
+        from sumo.basho.models import basho, torikumi
         from sumo.basho.admin import basho_admin

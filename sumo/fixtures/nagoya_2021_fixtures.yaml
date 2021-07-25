@@ -6,18 +6,23 @@
   pk: 1
   fields: {}
 
-
 # BANZUKE
 - model: banzuke.banzuke
   pk: 1
   fields:
     basho: 1
 
+# TORIKUMI
+- model: basho.torikumi
+  pk: 1
+  fields:
+    basho: 1
+    day: 1
 
 # SHUSSHIN
 - model: rikishi.shusshin
   pk: 1
-  fields: 
+  fields:
     town: Ulaanbaatar
     country: MN
 
@@ -188,7 +193,7 @@
   fields:
     name: ajigawa
     is_active: false
-    
+
 # RIKISHI
 - model: rikishi.rikishi
   pk: 1
@@ -196,10 +201,10 @@
     shikona_first: hakuho
     shikona_second: sho
     birth_name: Mönkhbat Davaajargal
-    date_of_birth: '1985-3-11'
+    date_of_birth: "1985-3-11"
     height: 192
     weight: 152.9
-    shikona_history: 
+    shikona_history:
       - hakuho sho
     heya_id_history:
       - 1
@@ -212,10 +217,10 @@
     shikona_first: terunofuji
     shikona_second: haruo
     birth_name: Ganerdene Gantulga
-    date_of_birth: '1991-11-29'
+    date_of_birth: "1991-11-29"
     height: 192
     weight: 158.5
-    shikona_history: 
+    shikona_history:
       - wakamisho yoshiaki
       - wakamisho noriaki
       - wakamisho yoshiaki
@@ -232,10 +237,10 @@
     shikona_first: takakeisho
     shikona_second: mitsunobu
     birth_name: Sato Takanobu
-    date_of_birth: '1996-8-5'
+    date_of_birth: "1996-8-5"
     height: 173
     weight: 149
-    shikona_history: 
+    shikona_history:
       - sato takanobu
       - takakeisho mitsunobu
     heya_id_history:
@@ -249,10 +254,10 @@
     shikona_first: shodai
     shikona_second: naoya
     birth_name: Shodai Naoya
-    date_of_birth: '1991-11-5'
+    date_of_birth: "1991-11-5"
     height: 182
     weight: 150
-    shikona_history: 
+    shikona_history:
       - shodai naoya
     heya_id_history:
       - 4
@@ -265,10 +270,10 @@
     shikona_first: asanoyama
     shikona_second: hideki
     birth_name: Ishibashi Hiroki
-    date_of_birth: '1994-3-1'
+    date_of_birth: "1994-3-1"
     height: 189
     weight: 158
-    shikona_history: 
+    shikona_history:
       - ishibashi hiroki
       - asanoyama hideki
     heya_id_history:
@@ -282,10 +287,10 @@
     shikona_first: takayasu
     shikona_second: akira
     birth_name: Takayasu Akira
-    date_of_birth: '1990-2-28'
+    date_of_birth: "1990-2-28"
     height: 187
     weight: 163
-    shikona_history: 
+    shikona_history:
       - takayasu akira
     heya_id_history:
       - 6
@@ -298,10 +303,10 @@
     shikona_first: mitakeumi
     shikona_second: hisashi
     birth_name: Omichi Hisashi
-    date_of_birth: '1992-12-25'
+    date_of_birth: "1992-12-25"
     height: 179
     weight: 149
-    shikona_history: 
+    shikona_history:
       - mitakeumi hisashi
     heya_id_history:
       - 7
@@ -314,10 +319,10 @@
     shikona_first: wakatakakage
     shikona_second: atsushi
     birth_name: Onami Atsushi
-    date_of_birth: '1994-12-6'
+    date_of_birth: "1994-12-6"
     height: 180
     weight: 129
-    shikona_history: 
+    shikona_history:
       - wakatakakage atsushi
     heya_id_history:
       - 8
@@ -330,10 +335,10 @@
     shikona_first: meisei
     shikona_second: chikara
     birth_name: Kawabata Meisei
-    date_of_birth: '1995-7-24'
+    date_of_birth: "1995-7-24"
     height: 180
     weight: 151
-    shikona_history: 
+    shikona_history:
       - meisei chikara
     heya_id_history:
       - 9
@@ -346,10 +351,10 @@
     shikona_first: endo
     shikona_second: shota
     birth_name: Endo Shota
-    date_of_birth: '1990-10-19'
+    date_of_birth: "1990-10-19"
     height: 183
     weight: 145.6
-    shikona_history: 
+    shikona_history:
       - endo shota
     heya_id_history:
       - 10
@@ -362,10 +367,10 @@
     shikona_first: daieisho
     shikona_second: hayato
     birth_name: Takanishi Hayato
-    date_of_birth: '1993-11-10'
+    date_of_birth: "1993-11-10"
     height: 179
     weight: 135.7
-    shikona_history: 
+    shikona_history:
       - takanishi hayato
       - daishoei hayato
       - daieisho hayato
@@ -380,10 +385,10 @@
     shikona_first: takanosho
     shikona_second: nobuaki
     birth_name: Ishii Nobuaki
-    date_of_birth: '1994-11-14'
+    date_of_birth: "1994-11-14"
     height: 181.5
     weight: 128.5
-    shikona_history: 
+    shikona_history:
       - masunosho nobuaki
       - takanosho nobuaki
     heya_id_history:
@@ -397,10 +402,10 @@
     shikona_first: ichinojo
     shikona_second: takashi
     birth_name: Ichinnorow Altankhuyag
-    date_of_birth: '1993-4-7'
+    date_of_birth: "1993-4-7"
     height: 190
     weight: 183
-    shikona_history: 
+    shikona_history:
       - ichinojo takashi
     heya_id_history:
       - 11
@@ -413,10 +418,10 @@
     shikona_first: hokutofuji
     shikona_second: daiki
     birth_name: Nakamura Daiki
-    date_of_birth: '1992-7-15'
+    date_of_birth: "1992-7-15"
     height: 182
     weight: 158
-    shikona_history: 
+    shikona_history:
       - daiki akimichi
       - hokutofuji daiki
     heya_id_history:
@@ -430,10 +435,10 @@
     shikona_first: tobizaru
     shikona_second: masaya
     birth_name: Iwasaki Masaya
-    date_of_birth: '1992-4-24'
+    date_of_birth: "1992-4-24"
     height: 175
     weight: 131
-    shikona_history: 
+    shikona_history:
       - iwasaki masaya
       - tobizaru masaya
     heya_id_history:
@@ -447,10 +452,10 @@
     shikona_first: kotoeko
     shikona_second: mitsunori
     birth_name: Kashiwadani Mitsutaka
-    date_of_birth: '1991-11-20'
+    date_of_birth: "1991-11-20"
     height: 177
     weight: 131
-    shikona_history: 
+    shikona_history:
       - kotokashiwadani mitsutaka
       - kotoeko mitsunori
     heya_id_history:
@@ -464,10 +469,10 @@
     shikona_first: chiyotairyu
     shikona_second: hidemasa
     birth_name: Meigetsuin Hidemasa
-    date_of_birth: '1988-11-14'
+    date_of_birth: "1988-11-14"
     height: 182
     weight: 166.8
-    shikona_history: 
+    shikona_history:
       - meigetsuin hidemasa
       - chiyotairyu hidemasa
     heya_id_history:
@@ -481,10 +486,10 @@
     shikona_first: okinoumi
     shikona_second: ayumi
     birth_name: Fukuoka Ayumi
-    date_of_birth: '1985-7-29'
+    date_of_birth: "1985-7-29"
     height: 190
     weight: 154
-    shikona_history: 
+    shikona_history:
       - fukuoka ayumi
       - okinoumi ayumi
       - fukuoka ayumi
@@ -500,10 +505,10 @@
     shikona_first: hoshoryu
     shikona_second: tomokatsu
     birth_name: Sukhragchaa Byambasuren
-    date_of_birth: '1999-5-22'
+    date_of_birth: "1999-5-22"
     height: 186
     weight: 131
-    shikona_history: 
+    shikona_history:
       - hoshoryu tomokatsu
     heya_id_history:
       - 9
@@ -516,10 +521,10 @@
     shikona_first: onosho
     shikona_second: fumiya
     birth_name: Utetsu Fumiya
-    date_of_birth: '1996-7-4'
+    date_of_birth: "1996-7-4"
     height: 176
     weight: 148.5
-    shikona_history: 
+    shikona_history:
       - onosho fumiya
     heya_id_history:
       - 15
@@ -532,10 +537,10 @@
     shikona_first: kiribayama
     shikona_second: tetsuo
     birth_name: Lkhagvasuren Byambachuluun
-    date_of_birth: '1996-4-24'
+    date_of_birth: "1996-4-24"
     height: 184
     weight: 94
-    shikona_history: 
+    shikona_history:
       - kiribayama tetsuo
     heya_id_history:
       - 16
@@ -548,10 +553,10 @@
     shikona_first: myogiryu
     shikona_second: yasunari
     birth_name: Miyamoto Yasunari
-    date_of_birth: '1986-10-22'
+    date_of_birth: "1986-10-22"
     height: 187
     weight: 140.2
-    shikona_history: 
+    shikona_history:
       - miyamoto yasunari
       - myogiryu yasunari
     heya_id_history:
@@ -565,10 +570,10 @@
     shikona_first: chiyoshoma
     shikona_second: fujio
     birth_name: Ganbaatar Munkhsaihan
-    date_of_birth: '1991-7-20'
+    date_of_birth: "1991-7-20"
     height: 183
     weight: 118.2
-    shikona_history: 
+    shikona_history:
       - shoma fujio
       - chiyoshoma fujio
     heya_id_history:
@@ -582,10 +587,10 @@
     shikona_first: takarafuji
     shikona_second: daisuke
     birth_name: Sugiyama Daisuke
-    date_of_birth: '1987-2-18'
+    date_of_birth: "1987-2-18"
     height: 186
     weight: 161.1
-    shikona_history: 
+    shikona_history:
       - takarafuji daisuke
     heya_id_history:
       - 2
@@ -598,10 +603,10 @@
     shikona_first: aoiyama
     shikona_second: kosuke
     birth_name: Ivanov Daniel
-    date_of_birth: '1986-6-19'
+    date_of_birth: "1986-6-19"
     height: 192
     weight: 192.6
-    shikona_history: 
+    shikona_history:
       - aoiyama kiyohito
       - aoiyama kosuke
     heya_id_history:
@@ -615,10 +620,10 @@
     shikona_first: hidenoumi
     shikona_second: takuya
     birth_name: Iwasaki Takuya
-    date_of_birth: '1989-6-11'
+    date_of_birth: "1989-6-11"
     height: 185
     weight: 156
-    shikona_history: 
+    shikona_history:
       - iwasaki takuya
       - hidenoumi takuya
     heya_id_history:
@@ -632,10 +637,10 @@
     shikona_first: shimanoumi
     shikona_second: koyo
     birth_name: Hamaguchi Koyo
-    date_of_birth: '1989-7-11'
+    date_of_birth: "1989-7-11"
     height: 179
     weight: 160
-    shikona_history: 
+    shikona_history:
       - hamaguchi koyo
       - shimanoumi koyo
     heya_id_history:
@@ -649,10 +654,10 @@
     shikona_first: tamawashi
     shikona_second: ichiro
     birth_name: Batjargal Munkhorgil
-    date_of_birth: '1984-11-16'
+    date_of_birth: "1984-11-16"
     height: 190
     weight: 161
-    shikona_history: 
+    shikona_history:
       - tamawashi ichiro
     heya_id_history:
       - 20
@@ -665,10 +670,10 @@
     shikona_first: terutsuyoshi
     shikona_second: shoki
     birth_name: Fukuoka Shoki
-    date_of_birth: '1995-1-17'
+    date_of_birth: "1995-1-17"
     height: 169
     weight: 112
-    shikona_history: 
+    shikona_history:
       - terutsuyoshi shoki
     heya_id_history:
       - 2
@@ -681,10 +686,10 @@
     shikona_first: kaisei
     shikona_second: ichiro
     birth_name: Sugano Ricardo
-    date_of_birth: '1986-12-18'
+    date_of_birth: "1986-12-18"
     height: 195
     weight: 187.8
-    shikona_history: 
+    shikona_history:
       - kaisei ichiro
     heya_id_history:
       - 21
@@ -697,10 +702,10 @@
     shikona_first: kotonowaka
     shikona_second: masahiro
     birth_name: Kamatani Masakatsu
-    date_of_birth: '1997-11-19'
+    date_of_birth: "1997-11-19"
     height: 188
     weight: 166
-    shikona_history: 
+    shikona_history:
       - kotokamatani masakatsu
       - kotonowaka masahiro
     heya_id_history:
@@ -714,10 +719,10 @@
     shikona_first: tochinoshin
     shikona_second: tsuyoshi
     birth_name: Gorgadze Levan
-    date_of_birth: '1987-10-13'
+    date_of_birth: "1987-10-13"
     height: 192
     weight: 162
-    shikona_history: 
+    shikona_history:
       - tochinoshin tsuyoshi
     heya_id_history:
       - 18
@@ -730,10 +735,10 @@
     shikona_first: kagayaki
     shikona_second: taishi
     birth_name: Tatsu Ryoya
-    date_of_birth: '1994-6-1'
+    date_of_birth: "1994-6-1"
     height: 193
     weight: 144.3
-    shikona_history: 
+    shikona_history:
       - tatsu ryoya
       - kagayaki taishi
     heya_id_history:
@@ -747,10 +752,10 @@
     shikona_first: chiyomaru
     shikona_second: kazuki
     birth_name: Kinoshita Kazuki
-    date_of_birth: '1991-4-17'
+    date_of_birth: "1991-4-17"
     height: 178
     weight: 176.3
-    shikona_history: 
+    shikona_history:
       - kinoshita kazuki
       - chiyomaru kazuki
     heya_id_history:
@@ -764,10 +769,10 @@
     shikona_first: ura
     shikona_second: kazuki
     birth_name: Ura Kazuki
-    date_of_birth: '1992-6-22'
+    date_of_birth: "1992-6-22"
     height: 172
     weight: 113
-    shikona_history: 
+    shikona_history:
       - ura kazuki
     heya_id_history:
       - 19
@@ -780,10 +785,10 @@
     shikona_first: daiamami
     shikona_second: genki
     birth_name: Sakamoto Genki
-    date_of_birth: '1992-12-15'
+    date_of_birth: "1992-12-15"
     height: 185
     weight: 167
-    shikona_history: 
+    shikona_history:
       - sakamoto genki
       - daiamami genki
     heya_id_history:
@@ -797,10 +802,10 @@
     shikona_first: chiyonoo
     shikona_second: miyohito
     birth_name: Motoi Miyohito
-    date_of_birth: '1991-5-29'
+    date_of_birth: "1991-5-29"
     height: 180
     weight: 149
-    shikona_history: 
+    shikona_history:
       - motoi miyohito
       - chiyoo miyohito
       - chiyonoo miyohito
@@ -815,10 +820,10 @@
     shikona_first: tsurugisho
     shikona_second: momotaro
     birth_name: Abiko Kentaro
-    date_of_birth: '1991-7-27'
+    date_of_birth: "1991-7-27"
     height: 184
     weight: 154
-    shikona_history: 
+    shikona_history:
       - abiko kentaro
       - tsurugisho momotaro
     heya_id_history:
@@ -832,10 +837,10 @@
     shikona_first: tokushoryu
     shikona_second: makoto
     birth_name: Aoki Makoto
-    date_of_birth: '1986-8-22'
+    date_of_birth: "1986-8-22"
     height: 182
     weight: 170.6
-    shikona_history: 
+    shikona_history:
       - aoki makoto
       - tokushoryu makoto
     heya_id_history:
@@ -849,10 +854,10 @@
     shikona_first: chiyonokuni
     shikona_second: toshiki
     birth_name: Sawada Toshiki
-    date_of_birth: '1990-7-10'
+    date_of_birth: "1990-7-10"
     height: 184
     weight: 143.8
-    shikona_history: 
+    shikona_history:
       - sawada toshiki
       - chiyonokuni toshiki
     heya_id_history:
@@ -866,10 +871,10 @@
     shikona_first: ishiura
     shikona_second: shikanosuke
     birth_name: Ishiura Masakatsu
-    date_of_birth: '1990-1-10'
+    date_of_birth: "1990-1-10"
     height: 173
     weight: 103.6
-    shikona_history: 
+    shikona_history:
       - ishiura masakatsu
       - ishiura shikanosuke
     heya_id_history:
@@ -883,10 +888,10 @@
     shikona_first: ichiyamamoto
     shikona_second: daiki
     birth_name: Yamamoto Daiki
-    date_of_birth: '1993-10-1'
+    date_of_birth: "1993-10-1"
     height: 187
     weight: 133
-    shikona_history: 
+    shikona_history:
       - ichiyamamoto daiki
     heya_id_history:
       - 23
@@ -899,10 +904,10 @@
     shikona_first: yutakayama
     shikona_second: ryota
     birth_name: Oyanagi Ryota
-    date_of_birth: '1993-9-22'
+    date_of_birth: "1993-9-22"
     height: 185
     weight: 171
-    shikona_history: 
+    shikona_history:
       - oyanagi ryota
       - yutakayama ryota
     heya_id_history:
@@ -916,10 +921,10 @@
     shikona_first: shohozan
     shikona_second: yuya
     birth_name: Matsutani Yuya
-    date_of_birth: '1984-2-9'
+    date_of_birth: "1984-2-9"
     height: 177
     weight: 138
-    shikona_history: 
+    shikona_history:
       - matsutani yuya
       - shohozan yuya
     heya_id_history:
@@ -933,10 +938,10 @@
     shikona_first: kyokutaisei
     shikona_second: takuya
     birth_name: Ogushi Takuya
-    date_of_birth: '1989-10-18'
+    date_of_birth: "1989-10-18"
     height: 184
     weight: 128.2
-    shikona_history: 
+    shikona_history:
       - ogushi takuya
       - kyokutaisei takuya
     heya_id_history:
@@ -950,10 +955,10 @@
     shikona_first: akua
     shikona_second: shoma
     birth_name: Takahata Yuki
-    date_of_birth: '1990-11-6'
+    date_of_birth: "1990-11-6"
     height: 181
     weight: 162.6
-    shikona_history: 
+    shikona_history:
       - toyononami yuki
       - akua shoma
     heya_id_history:
@@ -967,10 +972,10 @@
     shikona_first: wakamotoharu
     shikona_second: minato
     birth_name: Onami Minato
-    date_of_birth: '1993-10-5'
+    date_of_birth: "1993-10-5"
     height: 185
     weight: 127.2
-    shikona_history: 
+    shikona_history:
       - araonami minato
       - goshi minato
       - wakamotoharu minato
@@ -985,10 +990,10 @@
     shikona_first: hakuyozan
     shikona_second: ryosuke
     birth_name: Saito Ryosuke
-    date_of_birth: '1995-4-13'
+    date_of_birth: "1995-4-13"
     height: 185
     weight: 145.8
-    shikona_history: 
+    shikona_history:
       - hakuyozan ryosuke
     heya_id_history:
       - 22
@@ -1001,10 +1006,10 @@
     shikona_first: tohakuryu
     shikona_second: masahito
     birth_name: Shiraishi Masahito
-    date_of_birth: '1996-4-17'
+    date_of_birth: "1996-4-17"
     height: 181
     weight: 126
-    shikona_history: 
+    shikona_history:
       - shiraishi masahito
       - tohakuryu masahito
     heya_id_history:
@@ -1018,10 +1023,10 @@
     shikona_first: takakento
     shikona_second: terutora
     birth_name: Mizuta Kento
-    date_of_birth: '1996-2-10'
+    date_of_birth: "1996-2-10"
     height: 178
     weight: 160
-    shikona_history: 
+    shikona_history:
       - mizuta kento
       - takakento terutora
     heya_id_history:
@@ -1035,10 +1040,10 @@
     shikona_first: enho
     shikona_second: akira
     birth_name: Nakamura Yuya
-    date_of_birth: '1994-10-18'
+    date_of_birth: "1994-10-18"
     height: 169
     weight: 95
-    shikona_history: 
+    shikona_history:
       - enho yuya
       - enho akira
     heya_id_history:
@@ -1052,10 +1057,10 @@
     shikona_first: kotoshoho
     shikona_second: yoshinari
     birth_name: Tebakari Toshiki
-    date_of_birth: '1999-8-26'
+    date_of_birth: "1999-8-26"
     height: 188
     weight: 144
-    shikona_history: 
+    shikona_history:
       - kototebakari toshiki
       - kotoshoho yoshinari
     heya_id_history:
@@ -1069,10 +1074,10 @@
     shikona_first: takagenji
     shikona_second: satoshi
     birth_name: Kamiyama Satoshi
-    date_of_birth: '1997-5-13'
+    date_of_birth: "1997-5-13"
     height: 186
     weight: 126.2
-    shikona_history: 
+    shikona_history:
       - takagenji satoshi
     heya_id_history:
       - 3
@@ -1085,10 +1090,10 @@
     shikona_first: mitoryu
     shikona_second: takayuki
     birth_name: Turbold Baasansuren
-    date_of_birth: '1994-4-25'
+    date_of_birth: "1994-4-25"
     height: 187
     weight: 182
-    shikona_history: 
+    shikona_history:
       - mitoryu takayuki
     heya_id_history:
       - 25
@@ -1101,10 +1106,10 @@
     shikona_first: akiseyama
     shikona_second: mitsuhiko
     birth_name: Fukao Mitsuhiko
-    date_of_birth: '1985-7-18'
+    date_of_birth: "1985-7-18"
     height: 182
     weight: 183
-    shikona_history: 
+    shikona_history:
       - fukao mitsuhiko
       - akiseyama mitsuhiko
     heya_id_history:
@@ -1118,10 +1123,10 @@
     shikona_first: azumaryu
     shikona_second: tsuyoshi
     birth_name: Todbileg Sanduijav
-    date_of_birth: '1987-5-12'
+    date_of_birth: "1987-5-12"
     height: 192
     weight: 147.2
-    shikona_history: 
+    shikona_history:
       - azumaryu tsuyoshi
     heya_id_history:
       - 24
@@ -1134,10 +1139,10 @@
     shikona_first: bushozan
     shikona_second: kotaro
     birth_name: Fujiwara Kotaro
-    date_of_birth: '1995-12-6'
+    date_of_birth: "1995-12-6"
     height: 172
     weight: 170
-    shikona_history: 
+    shikona_history:
       - kotaro masamichi
       - bushozan kotaro
     heya_id_history:
@@ -1151,10 +1156,10 @@
     shikona_first: sadanoumi
     shikona_second: takashi
     birth_name: Matsumura Kaname
-    date_of_birth: '1987-5-11'
+    date_of_birth: "1987-5-11"
     height: 184
     weight: 131.2
-    shikona_history: 
+    shikona_history:
       - matsumura kaname
       - sadanoumi kaname
       - sadanoumi takashi
@@ -1169,10 +1174,10 @@
     shikona_first: ryuden
     shikona_second: goshi
     birth_name: Watanabe Yuki
-    date_of_birth: '1990-11-10'
+    date_of_birth: "1990-11-10"
     height: 192
     weight: 145
-    shikona_history: 
+    shikona_history:
       - ryuden goshi
     heya_id_history:
       - 22
@@ -1185,10 +1190,10 @@
     shikona_first: midorifuji
     shikona_second: kazunari
     birth_name: Ihara Kazunari
-    date_of_birth: '1996-8-30'
+    date_of_birth: "1996-8-30"
     height: 171
     weight: 114
-    shikona_history: 
+    shikona_history:
       - ihara kazunari
       - midorifuji kazunari
     heya_id_history:
@@ -1202,10 +1207,10 @@
     shikona_first: nishikigi
     shikona_second: tetsuya
     birth_name: Kumagai Tetsuya
-    date_of_birth: '1990-8-25'
+    date_of_birth: "1990-8-25"
     height: 184.5
     weight: 149.5
-    shikona_history: 
+    shikona_history:
       - kumagai tetsuya
       - nishikigi tetsuya
     heya_id_history:
@@ -1219,10 +1224,10 @@
     shikona_first: kyokushuho
     shikona_second: koki
     birth_name: Tomurbator Erdenbator
-    date_of_birth: '1988-8-9'
+    date_of_birth: "1988-8-9"
     height: 191
     weight: 149.6
-    shikona_history: 
+    shikona_history:
       - kyokushuho yuji
       - kyokushuho koki
     heya_id_history:
@@ -1236,10 +1241,10 @@
     shikona_first: nishikifuji
     shikona_second: ryusei
     birth_name: Ogasawara Ryusei
-    date_of_birth: '1996-7-22'
+    date_of_birth: "1996-7-22"
     height: 183
     weight: 143
-    shikona_history: 
+    shikona_history:
       - ogasawara ryusei
       - nishikifuji ryusei
     heya_id_history:
@@ -1253,10 +1258,10 @@
     shikona_first: daishomaru
     shikona_second: shogo
     birth_name: Kawabata Shogo
-    date_of_birth: '1991-7-10'
+    date_of_birth: "1991-7-10"
     height: 175
     weight: 153
-    shikona_history: 
+    shikona_history:
       - kawabata shogo
       - daishomaru shogo
     heya_id_history:
@@ -1270,10 +1275,10 @@
     shikona_first: daishoho
     shikona_second: kiyohiro
     birth_name: Shijirbayar Chimideregezen
-    date_of_birth: '1994-8-28'
+    date_of_birth: "1994-8-28"
     height: 182
     weight: 140
-    shikona_history: 
+    shikona_history:
       - daishoho kiyohiro
     heya_id_history:
       - 10
@@ -1286,10 +1291,10 @@
     shikona_first: oho
     shikona_second: konosuke
     birth_name: Naya Konosuke
-    date_of_birth: '2000-2-14'
+    date_of_birth: "2000-2-14"
     height: 188
     weight: 166
-    shikona_history: 
+    shikona_history:
       - naya konosuke
       - oho konosuke
     heya_id_history:
@@ -1303,10 +1308,10 @@
     shikona_first: kaisho
     shikona_second: asaki
     birth_name: Honda Asaki
-    date_of_birth: '1995-1-28'
+    date_of_birth: "1995-1-28"
     height: 177
     weight: 120
-    shikona_history: 
+    shikona_history:
       - honda asaki
       - kaisho asaki
       - kaiseio asaki
@@ -1322,10 +1327,10 @@
     shikona_first: kotokuzan
     shikona_second: taro
     birth_name: Terai Jasper Kenneth
-    date_of_birth: '1994-3-11'
+    date_of_birth: "1994-3-11"
     height: 181
     weight: 157
-    shikona_history: 
+    shikona_history:
       - terai taro
       - kotokuzan taro
     heya_id_history:
@@ -1339,10 +1344,10 @@
     shikona_first: abi
     shikona_second: masatora
     birth_name: Horikiri Kosuke
-    date_of_birth: '1994-5-4'
+    date_of_birth: "1994-5-4"
     height: 185
     weight: 121
-    shikona_history: 
+    shikona_history:
       - horikiri kosuke
       - abi masatora
     heya_id_history:
@@ -1356,15 +1361,15 @@
     shikona_first: yago
     shikona_second: takanori
     birth_name: Yago Takanori
-    date_of_birth: '1994-7-8'
+    date_of_birth: "1994-7-8"
     height: 187
     weight: 172
-    shikona_history: 
+    shikona_history:
       - yago takanori
     heya_id_history:
       - 31
     heya: 31
-    shusshin: 2    
+    shusshin: 2
 
 - model: rikishi.rikishi
   pk: 71
@@ -1372,10 +1377,10 @@
     shikona_first: harumafuji
     shikona_second: kohei
     birth_name: Davaanyam Byambadorj
-    date_of_birth: '1984-4-14'
+    date_of_birth: "1984-4-14"
     height: 186
     weight: 133
-    shikona_history: 
+    shikona_history:
       - ama kohei
       - harumafuji kohei
     heya_id_history:
@@ -1383,8 +1388,7 @@
       - 2
     heya: 2
     shusshin: 1
-    is_active: false    
-
+    is_active: false
 
 # BANZUKE APPEARANCE
 - model: banzuke.banzukeappearance
@@ -1396,7 +1400,7 @@
     makuuchi_rank: 1
     numeric_rank: 1
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 2
   fields:
@@ -1406,7 +1410,7 @@
     makuuchi_rank: 2
     numeric_rank: 1
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 3
   fields:
@@ -1416,7 +1420,7 @@
     makuuchi_rank: 2
     numeric_rank: 1
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 4
   fields:
@@ -1426,7 +1430,7 @@
     makuuchi_rank: 2
     numeric_rank: 2
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 5
   fields:
@@ -1436,7 +1440,7 @@
     makuuchi_rank: 2
     numeric_rank: 2
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 6
   fields:
@@ -1446,7 +1450,7 @@
     makuuchi_rank: 3
     numeric_rank: 1
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 7
   fields:
@@ -1456,7 +1460,7 @@
     makuuchi_rank: 3
     numeric_rank: 1
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 8
   fields:
@@ -1466,7 +1470,7 @@
     makuuchi_rank: 4
     numeric_rank: 1
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 9
   fields:
@@ -1476,7 +1480,7 @@
     makuuchi_rank: 4
     numeric_rank: 1
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 10
   fields:
@@ -1486,7 +1490,7 @@
     makuuchi_rank: 5
     numeric_rank: 1
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 11
   fields:
@@ -1496,7 +1500,7 @@
     makuuchi_rank: 5
     numeric_rank: 1
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 12
   fields:
@@ -1506,7 +1510,7 @@
     makuuchi_rank: 5
     numeric_rank: 2
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 13
   fields:
@@ -1516,7 +1520,7 @@
     makuuchi_rank: 5
     numeric_rank: 2
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 14
   fields:
@@ -1526,7 +1530,7 @@
     makuuchi_rank: 5
     numeric_rank: 3
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 15
   fields:
@@ -1536,7 +1540,7 @@
     makuuchi_rank: 5
     numeric_rank: 3
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 16
   fields:
@@ -1546,7 +1550,7 @@
     makuuchi_rank: 5
     numeric_rank: 4
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 17
   fields:
@@ -1556,7 +1560,7 @@
     makuuchi_rank: 5
     numeric_rank: 4
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 18
   fields:
@@ -1566,7 +1570,7 @@
     makuuchi_rank: 5
     numeric_rank: 5
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 19
   fields:
@@ -1576,7 +1580,7 @@
     makuuchi_rank: 5
     numeric_rank: 5
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 20
   fields:
@@ -1586,7 +1590,7 @@
     makuuchi_rank: 5
     numeric_rank: 6
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 21
   fields:
@@ -1596,7 +1600,7 @@
     makuuchi_rank: 5
     numeric_rank: 6
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 22
   fields:
@@ -1606,7 +1610,7 @@
     makuuchi_rank: 5
     numeric_rank: 7
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 23
   fields:
@@ -1616,7 +1620,7 @@
     makuuchi_rank: 5
     numeric_rank: 7
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 24
   fields:
@@ -1626,7 +1630,7 @@
     makuuchi_rank: 5
     numeric_rank: 8
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 25
   fields:
@@ -1636,7 +1640,7 @@
     makuuchi_rank: 5
     numeric_rank: 8
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 26
   fields:
@@ -1646,7 +1650,7 @@
     makuuchi_rank: 5
     numeric_rank: 9
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 27
   fields:
@@ -1656,7 +1660,7 @@
     makuuchi_rank: 5
     numeric_rank: 9
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 28
   fields:
@@ -1666,7 +1670,7 @@
     makuuchi_rank: 5
     numeric_rank: 10
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 29
   fields:
@@ -1676,7 +1680,7 @@
     makuuchi_rank: 5
     numeric_rank: 10
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 30
   fields:
@@ -1686,7 +1690,7 @@
     makuuchi_rank: 5
     numeric_rank: 11
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 31
   fields:
@@ -1696,7 +1700,7 @@
     makuuchi_rank: 5
     numeric_rank: 11
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 32
   fields:
@@ -1706,7 +1710,7 @@
     makuuchi_rank: 5
     numeric_rank: 12
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 33
   fields:
@@ -1716,7 +1720,7 @@
     makuuchi_rank: 5
     numeric_rank: 12
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 34
   fields:
@@ -1726,7 +1730,7 @@
     makuuchi_rank: 5
     numeric_rank: 13
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 35
   fields:
@@ -1736,7 +1740,7 @@
     makuuchi_rank: 5
     numeric_rank: 13
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 36
   fields:
@@ -1746,7 +1750,7 @@
     makuuchi_rank: 5
     numeric_rank: 14
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 37
   fields:
@@ -1756,7 +1760,7 @@
     makuuchi_rank: 5
     numeric_rank: 14
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 38
   fields:
@@ -1766,7 +1770,7 @@
     makuuchi_rank: 5
     numeric_rank: 15
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 39
   fields:
@@ -1776,7 +1780,7 @@
     makuuchi_rank: 5
     numeric_rank: 15
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 40
   fields:
@@ -1786,7 +1790,7 @@
     makuuchi_rank: 5
     numeric_rank: 16
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 41
   fields:
@@ -1796,7 +1800,7 @@
     makuuchi_rank: 5
     numeric_rank: 16
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 42
   fields:
@@ -1806,7 +1810,7 @@
     makuuchi_rank: 5
     numeric_rank: 17
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 43
   fields:
@@ -1815,7 +1819,7 @@
     division: 2
     numeric_rank: 1
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 44
   fields:
@@ -1824,7 +1828,7 @@
     division: 2
     numeric_rank: 1
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 45
   fields:
@@ -1833,7 +1837,7 @@
     division: 2
     numeric_rank: 2
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 46
   fields:
@@ -1842,7 +1846,7 @@
     division: 2
     numeric_rank: 2
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 47
   fields:
@@ -1851,7 +1855,7 @@
     division: 2
     numeric_rank: 3
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 48
   fields:
@@ -1860,7 +1864,7 @@
     division: 2
     numeric_rank: 3
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 49
   fields:
@@ -1869,7 +1873,7 @@
     division: 2
     numeric_rank: 4
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 50
   fields:
@@ -1878,7 +1882,7 @@
     division: 2
     numeric_rank: 4
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 51
   fields:
@@ -1887,7 +1891,7 @@
     division: 2
     numeric_rank: 5
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 52
   fields:
@@ -1896,7 +1900,7 @@
     division: 2
     numeric_rank: 5
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 53
   fields:
@@ -1905,7 +1909,7 @@
     division: 2
     numeric_rank: 6
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 54
   fields:
@@ -1914,7 +1918,7 @@
     division: 2
     numeric_rank: 6
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 55
   fields:
@@ -1923,7 +1927,7 @@
     division: 2
     numeric_rank: 7
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 56
   fields:
@@ -1932,7 +1936,7 @@
     division: 2
     numeric_rank: 7
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 57
   fields:
@@ -1941,7 +1945,7 @@
     division: 2
     numeric_rank: 8
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 58
   fields:
@@ -1950,7 +1954,7 @@
     division: 2
     numeric_rank: 8
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 59
   fields:
@@ -1959,7 +1963,7 @@
     division: 2
     numeric_rank: 9
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 60
   fields:
@@ -1968,7 +1972,7 @@
     division: 2
     numeric_rank: 9
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 61
   fields:
@@ -1977,7 +1981,7 @@
     division: 2
     numeric_rank: 10
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 62
   fields:
@@ -1986,7 +1990,7 @@
     division: 2
     numeric_rank: 10
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 63
   fields:
@@ -1995,7 +1999,7 @@
     division: 2
     numeric_rank: 11
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 64
   fields:
@@ -2004,7 +2008,7 @@
     division: 2
     numeric_rank: 11
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 65
   fields:
@@ -2013,7 +2017,7 @@
     division: 2
     numeric_rank: 12
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 66
   fields:
@@ -2022,7 +2026,7 @@
     division: 2
     numeric_rank: 12
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 67
   fields:
@@ -2031,7 +2035,7 @@
     division: 2
     numeric_rank: 13
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 68
   fields:
@@ -2040,7 +2044,7 @@
     division: 2
     numeric_rank: 13
     side: 2
-    
+
 - model: banzuke.banzukeappearance
   pk: 69
   fields:
@@ -2049,7 +2053,7 @@
     division: 2
     numeric_rank: 14
     side: 1
-    
+
 - model: banzuke.banzukeappearance
   pk: 70
   fields:
@@ -2058,4 +2062,3 @@
     division: 2
     numeric_rank: 14
     side: 2
-    
